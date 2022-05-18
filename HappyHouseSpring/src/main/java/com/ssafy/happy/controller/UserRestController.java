@@ -81,7 +81,7 @@ public class UserRestController {
 
 	@ApiOperation(value = "사용자 정보를 삽입한다.", response = Integer.class)
 	@PostMapping("/")
-	public ResponseEntity<?> insert(/*@RequestBody*/ User user) {
+	public ResponseEntity<?> insert( @RequestBody User user) {
 		try {
 			int result = usvc.insert(user);
 			return new ResponseEntity<Integer>(result, HttpStatus.CREATED);
