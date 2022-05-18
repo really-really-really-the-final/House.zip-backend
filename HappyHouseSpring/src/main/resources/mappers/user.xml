@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssafy.happy.model.repo.UserRepo">
+
+	<insert id="insert" parameterType="User">
+		INSERT INTO userinfo (id, password, name, email,tel)
+		VALUES(#{id}, #{password}, #{name}, #{email}, #{tel})
+	</insert>
+	
+	<delete id="delete" parameterType="string">
+		DELETE FROM userinfo
+		WHERE id = #{id}
+	</delete>
+	
+	<update id="update" parameterType="User">
+		UPDATE userinfo
+		SET password = #{password} , name = #{name} , email = #{email}, tel = #{tel}
+		WHERE id = #{id}
+	</update>
+	
+	<select id="select" parameterType="string" resultType="User">
+		SELECT *
+		FROM userinfo WHERE id = #{id}
+	</select>
+
+</mapper>
