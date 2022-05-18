@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssafy.happy.model.repo.QnaRepo">
+
+	<insert id="insert" parameterType="Qna">
+		INSERT INTO qna (userid, title, content, asktime)
+		VALUES(#{userId}, #{title}, #{content}, now())
+	</insert>
+	
+	<delete id="deleteAsk" parameterType="int">
+		DELETE FROM qna
+		WHERE no = #{no}
+	</delete>
+	
+	<delete id="deleteAns" parameterType="int">
+		UPDATE FROM qna
+		SET masterid = NULL , anscontent = NULL ,anstime = NULL
+		WHERE no = #{no}
+	</delete>
+	
+	<update id="updateAsk" parameterType="Qna">
+		UPDATE qna
+		SET title = #{title} , content = #{content}
+		WHERE no = #{no}
+	</update>
+	
+	<update id="updateAns" parameterType="Qna">
+		UPDATE qna
+		SET masterid = #{masterid} , anscontent = #{anscontent} ,anstime = now()
+		WHERE no = #{no}
+	</update>
+	
+	<select id="select" parameterType="int" resultType="Notice">
+		SELECT *
+		FROM qna WHERE no = #{no}
+	</select>
+	
+	<select id="selectAll" resultType="Qna">
+		SELECT *
+		FROM qna
+	</select>
+
+</mapper>
+
+

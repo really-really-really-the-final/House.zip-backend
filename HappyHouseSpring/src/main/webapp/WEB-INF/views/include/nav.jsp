@@ -26,6 +26,8 @@
 								<li><a class="dropdown-item" href="${root}/house/dong">동별조회</a></li>
 								<li><a class="dropdown-item" href="${root}/house/apt">아파트별조회</a></li>
 							</ul></li>
+							<li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4"
+							href="${root}/qna">QnA</a></li>
 					
 						<c:if test="${empty loginUser}">
 							<li class="nav-item"><a
