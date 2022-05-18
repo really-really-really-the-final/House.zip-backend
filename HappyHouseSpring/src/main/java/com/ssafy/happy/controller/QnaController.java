@@ -40,7 +40,7 @@ public class QnaController {
 		if (session != null) {
 			User user = (User) session.getAttribute("loginUser");
 			Qna qna = qsvc.select(no);
-			if (user.isManager() || qna.getUserId().equals(user.getId())) {
+			if (user.isManager() || qna.getUserid().equals(user.getId())) {
 				m.addAttribute("qna", qna);
 				m.addAttribute("ism", user.isManager());
 				qna.setContent(qna.getContent().replace("\r\n", "<br>"));
@@ -80,7 +80,7 @@ public class QnaController {
 //	@PostMapping("/save")
 	public String save(Qna qna, HttpSession session, RedirectAttributes re) throws SQLException {
 		User user = (User) session.getAttribute("loginUser");
-		qna.setUserId(user.getId());
+		qna.setUserid(user.getId());
 		qsvc.insert(qna);
 		re.addFlashAttribute("msg", "공지등록 성공");
 		return "redirect:/qna/";
@@ -107,7 +107,7 @@ public class QnaController {
 	public String modify(Qna qna, int no, HttpSession session, Model m, RedirectAttributes re) throws SQLException {
 
 		User user = (User) session.getAttribute("loginUser");
-		qna.setUserId(user.getId());
+		qna.setUserid(user.getId());
 		qna.setNo(no);
 		qsvc.updateAsk(qna);
 		re.addFlashAttribute("msg", "공지수정 성공");
@@ -118,7 +118,7 @@ public class QnaController {
 	public String modifyAns(Qna qna, int no, HttpSession session, Model m, RedirectAttributes re) throws SQLException {
 
 		User user = (User) session.getAttribute("loginUser");
-		qna.setUserId(user.getId());
+		qna.setUserid(user.getId());
 		qna.setNo(no);
 		qsvc.updateAns(qna);
 		re.addFlashAttribute("msg", "공지수정 성공");

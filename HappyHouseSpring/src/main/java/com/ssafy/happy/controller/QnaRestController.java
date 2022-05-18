@@ -55,7 +55,7 @@ public class QnaRestController {
 
 	@ApiOperation(value = "{no}에 해당하는 QnA를 삭제한다. 그리고 DB삭제 성공여부에 따라 'success' 또는 'fail' 문자열을 반환한다.", response = String.class)
 	@DeleteMapping("/{no}")
-	public ResponseEntity<String> delete(@RequestParam int no) throws SQLException {
+	public ResponseEntity<String> delete(@PathVariable int no) throws SQLException {
 		logger.debug("delete - 호출");
 		if (qsvc.delete(no) == 1) {
 			return new ResponseEntity<String>(SUCCESS, HttpStatus.OK);

@@ -5,7 +5,7 @@
 
 	<insert id="insert" parameterType="Qna">
 		INSERT INTO qna (userid, title, content, asktime)
-		VALUES(#{userId}, #{title}, #{content}, now())
+		VALUES(#{userid}, #{title}, #{content}, now())
 	</insert>
 	
 	<delete id="delete" parameterType="int">

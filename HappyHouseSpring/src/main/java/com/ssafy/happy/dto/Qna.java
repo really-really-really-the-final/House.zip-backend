@@ -13,7 +13,7 @@ import lombok.ToString;
 @ToString
 public class Qna {
 	int no;
-	String userId;
+	String userid;
 	String title;
 	String content;
 	String asktime;
@@ -21,30 +21,30 @@ public class Qna {
 	String anscontent;
 	String anstime;
 	
-	public Qna(String userId, String title, String content){
-		this.userId=userId;
+	public Qna(String userid, String title, String content){
+		this.userid=userid;
 		this.title=title;
 		this.content=content;
 	}
-	public Qna(int no, String userId, String title, String content){
+	public Qna(int no, String userid, String title, String content){
 		this.no=no;
-		this.userId=userId;
+		this.userid=userid;
 		this.title=title;
 		this.content=content;
 	}
-	public Qna(String userId, String title, String content, String asktime,
+	public Qna(String userid, String title, String content, String asktime,
 			String masterid, String anscontent){
-		this.userId=userId;
+		this.userid=userid;
 		this.title=title;
 		this.content=content;
 		this.asktime=asktime;
 		this.masterid=masterid;
 		this.anscontent=anscontent;
 	}
-	public Qna(int no, String userId, String title, String content, String asktime,
+	public Qna(int no, String userid, String title, String content, String asktime,
 			String masterid, String anscontent){
 		this.no=no;
-		this.userId=userId;
+		this.userid=userid;
 		this.title=title;
 		this.content=content;
 		this.asktime=asktime;
