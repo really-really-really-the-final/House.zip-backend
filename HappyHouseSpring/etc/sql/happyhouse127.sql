@@ -148,9 +148,9 @@ COLLATE = utf8mb4_0900_ai_ci;
 CREATE TABLE IF NOT EXISTS `happyhouse127`.`notice` (
   `no` INT NOT NULL AUTO_INCREMENT,
   `userid` VARCHAR(15) NOT NULL,
-  `title` VARCHAR(45) NULL DEFAULT NULL,
-  `content` TEXT NULL DEFAULT NULL,
-  `regtime` TIMESTAMP NULL DEFAULT NULL,
+  `title` VARCHAR(45) NOT NULL,
+  `content` TEXT NOT NULL,
+  `regtime` TIMESTAMP NOT NULL,
   PRIMARY KEY (`no`),
   INDEX `fk_notice_userinfo1_idx` (`userid` ASC) VISIBLE,
   CONSTRAINT `fk_notice_userinfo1`
@@ -182,6 +182,28 @@ CREATE TABLE IF NOT EXISTS `happyhouse127`.`storeinfo` (
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
+
+
+-- -----------------------------------------------------
+-- Table `happyhouse127`.`qna`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `happyhouse127`.`qna` (
+  `no` INT NOT NULL AUTO_INCREMENT,
+  `userid` VARCHAR(15) NOT NULL,
+  `title` VARCHAR(45) NOT NULL,
+  `content` TEXT NOT NULL,
+  `asktime` TIMESTAMP NOT NULL,
+  `masterid` VARCHAR(15) NULL DEFAULT NULL,
+  `anscontent` TEXT NULL DEFAULT NULL,
+  `anstime` TIMESTAMP NULL DEFAULT NULL,
+  PRIMARY KEY (`no`),
+  INDEX `fk_qna_userinfo1_idx` (`userid` ASC) VISIBLE,
+  CONSTRAINT `fk_qna_userinfo1`
+    FOREIGN KEY (`userid`)
+    REFERENCES `happyhouse127`.`userinfo` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
 
 
 SET SQL_MODE=@OLD_SQL_MODE;
