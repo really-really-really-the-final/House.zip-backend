@@ -18,14 +18,14 @@ import com.ssafy.happy.dto.Qna;
 import com.ssafy.happy.dto.User;
 import com.ssafy.happy.model.service.QnaService;
 
-@Controller
-@RequestMapping("qna")
+//@Controller
+//@RequestMapping("qna")
 public class QnaController {
 
-	@Autowired
+//	@Autowired
 	QnaService qsvc;
 
-	@GetMapping("/")
+//	@GetMapping("/")
 	public String notice(Model m, HttpSession session) throws SQLException {
 		List<Qna> qnas = qsvc.selectAll();
 
@@ -35,7 +35,7 @@ public class QnaController {
 		return "qna/qna";
 	}
 
-	@GetMapping("/detail")
+//	@GetMapping("/detail")
 	public String detail(int no, Model m, HttpSession session, RedirectAttributes re) throws SQLException {
 		if (session != null) {
 			User user = (User) session.getAttribute("loginUser");
@@ -54,21 +54,21 @@ public class QnaController {
 
 	}
 
-	@GetMapping("/write")
+//	@GetMapping("/write")
 	public String write() throws SQLException {
 		return "qna/write";
 	}
 
-	@GetMapping("/writeans")
+//	@GetMapping("/writeans")
 	public String answrite() throws SQLException {
 		return "qna/writeans";
 	}
 
-	@GetMapping("/delete")
+//	@GetMapping("/delete")
 	public String delete(String wrid, int no, HttpSession session, RedirectAttributes re) throws SQLException {
 		User user = (User) session.getAttribute("loginUser");
 		if (wrid.equals(user.getId())) {
-			qsvc.deleteAsk(no);
+			qsvc.delete(no);
 			re.addFlashAttribute("msg", "삭제했습니다.");
 		} else {
 			re.addFlashAttribute("msg", "본인이 작성한 글이 아닙니다.");
@@ -76,19 +76,8 @@ public class QnaController {
 		return "redirect:/qna/";
 	}
 
-	@GetMapping("/deletans")
-	public String deleteAns(String wrid, int no, HttpSession session, RedirectAttributes re) throws SQLException {
-		User user = (User) session.getAttribute("loginUser");
-		if (user.isManager()) {
-			qsvc.deleteAns(no);
-			re.addFlashAttribute("msg", "삭제했습니다.");
-		} else {
-			re.addFlashAttribute("msg", "관리자가 아닙니다.");
-		}
-		return "redirect:/qna/";
-	}
 
-	@PostMapping("/save")
+//	@PostMapping("/save")
 	public String save(Qna qna, HttpSession session, RedirectAttributes re) throws SQLException {
 		User user = (User) session.getAttribute("loginUser");
 		qna.setUserId(user.getId());
@@ -97,7 +86,7 @@ public class QnaController {
 		return "redirect:/qna/";
 	}
 
-	@GetMapping("/modify")
+//	@GetMapping("/modify")
 	public String modify(String wrid, int no, HttpSession session, Model m, RedirectAttributes re) throws SQLException {
 		User user = (User) session.getAttribute("loginUser");
 		if (wrid.equals(user.getId())) {
@@ -114,7 +103,7 @@ public class QnaController {
 		}
 	}
 
-	@PostMapping("/modify")
+//	@PostMapping("/modify")
 	public String modify(Qna qna, int no, HttpSession session, Model m, RedirectAttributes re) throws SQLException {
 
 		User user = (User) session.getAttribute("loginUser");
@@ -125,7 +114,7 @@ public class QnaController {
 		return "redirect:/qna/";
 	}
 
-	@PostMapping("/modifyans")
+//	@PostMapping("/modifyans")
 	public String modifyAns(Qna qna, int no, HttpSession session, Model m, RedirectAttributes re) throws SQLException {
 
 		User user = (User) session.getAttribute("loginUser");

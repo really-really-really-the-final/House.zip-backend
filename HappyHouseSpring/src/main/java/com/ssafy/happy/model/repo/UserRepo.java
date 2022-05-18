@@ -1,11 +1,13 @@
 package com.ssafy.happy.model.repo;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import com.ssafy.happy.dto.User;
 
 public interface UserRepo {
 
+	List<User> selectAll() throws SQLException;
 	User select(String id) throws SQLException;
 	int insert(User user) throws SQLException;
     int delete(String id) throws SQLException;

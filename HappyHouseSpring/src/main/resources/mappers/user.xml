@@ -23,5 +23,10 @@
 		SELECT *
 		FROM userinfo WHERE id = #{id}
 	</select>
+	
+	<select id="selectAll" parameterType="string" resultType="User">
+		SELECT *
+		FROM userinfo
+	</select>
 
 </mapper>

@@ -10,6 +10,7 @@ public interface HouseService {
 	
 	House select(int no);
 	List<House> selectGugun(SearchCondition condition);
+//	List<House> selectGugun(String gugun);
 	List<House> selectDong(String dong);
 	List<House> selectApt(String aptName);
 	Map<String, Object> pagingSearch(SearchCondition condition);

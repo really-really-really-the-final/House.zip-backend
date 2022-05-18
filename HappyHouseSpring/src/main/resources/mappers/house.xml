@@ -9,7 +9,7 @@
 		WHERE no=#{no}
 	</select>
 	
-<!-- 	<select id="selectGugun" parameterType="string" resultType="House">
+	<!-- <select id="selectGugun" parameterType="string" resultType="House">
 		SELECT *
 		FROM houseinfo left join housedeal on houseinfo.aptCode = housedeal.aptCode
 		WHERE dongcode like concat(left(#{guGun},5), '%')

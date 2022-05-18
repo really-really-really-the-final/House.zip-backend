@@ -8,14 +8,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-@Controller
+//@Controller
 public class MainController {
 
-	@GetMapping({ "/", "/index" })
+//	@GetMapping({ "/", "/index" })
 	public String index(HttpSession session) {
 		return "index";
 	}
-	@GetMapping("/intro")
+//	@GetMapping("/intro")
 	public String intro(Model m) throws SQLException {
 		return "intro";
 	}

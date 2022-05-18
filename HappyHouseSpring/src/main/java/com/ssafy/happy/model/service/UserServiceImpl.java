@@ -1,6 +1,7 @@
 package com.ssafy.happy.model.service;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,6 +14,11 @@ import com.ssafy.happy.model.repo.UserRepo;
 public class UserServiceImpl implements UserService {
 	@Autowired
 	public UserRepo repo;
+	
+	@Override
+	public List<User> selectAll() throws SQLException {
+		return repo.selectAll();
+	}
 	
 	@Override
 	public User select(String id) throws SQLException {

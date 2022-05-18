@@ -37,11 +37,16 @@ public class HouseServiceImpl implements HouseService {
 		return repo.selectApt(aptName);
 	}
 
+//	@Override
+//	public List<House> selectGugun(String gugun) {
+//		return selectGugun(gugun);
+//	}
+	
 	@Override
 	public List<House> selectGugun(SearchCondition condition) {
 		return selectGugun(condition);
 	}
-
+	
 //	@Override
 //	public List<House> selectDong(SearchCondition condition) {
 //		return selectDong(condition);

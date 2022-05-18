@@ -15,18 +15,18 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.ssafy.happy.dto.User;
 import com.ssafy.happy.model.service.UserService;
 
-@Controller
-@RequestMapping("/user")
+//@Controller
+//@RequestMapping("/user")
 public class UserController {
-	@Autowired
+//	@Autowired
 	UserService usvc;
 
-	@GetMapping("/login")
+//	@GetMapping("/login")
 	public String login() {
 		return "user/login";
 	}
 
-	@PostMapping("/login")
+//	@PostMapping("/login")
 	public String login(User user, HttpSession session, Model m) throws SQLException {
 		User selected = usvc.select(user.getId());
 		if (selected != null && user.getPassword().equals(selected.getPassword())) {
@@ -38,30 +38,30 @@ public class UserController {
 		}
 	}
 
-	@GetMapping("/logout")
+//	@GetMapping("/logout")
 	public String logout(HttpSession session) {
 		session.invalidate();
 		return "redirect:/";
 	}
 
-	@GetMapping("/regist")
+//	@GetMapping("/regist")
 	public String regist() {
 		return "user/regist";
 	}
 
-	@PostMapping("/regist")
+//	@PostMapping("/regist")
 	public String regist(User user, RedirectAttributes re) throws SQLException {
 		usvc.insert(user);
 		re.addFlashAttribute("msg", "회원가입 성공");
 		return "redirect:/";
 	}
 
-	@GetMapping("/findpwd")
+//	@GetMapping("/findpwd")
 	public String findpwd() {
 		return "user/findpwd";
 	}
 
-	@PostMapping("/findpwd")
+//	@PostMapping("/findpwd")
 	public String findpwd(User user, Model m, HttpSession session, RedirectAttributes re) throws SQLException {
 		User selected = usvc.select(user.getId());
 		if (selected != null && user.getName().equals(user.getName()) && user.getTel().equals(user.getTel())) {
@@ -75,14 +75,14 @@ public class UserController {
 		}
 	}
 
-	@GetMapping("/mypage")
+//	@GetMapping("/mypage")
 	public String mypage(Model m, HttpSession session) throws SQLException {
 		User user = (User) session.getAttribute("loginUser");
 		m.addAttribute("user", user);
 		return "user/mypage";
 	}
 
-	@GetMapping("/rmuser")
+//	@GetMapping("/rmuser")
 	public String rmuser(Model m, RedirectAttributes re, HttpSession session) throws SQLException {
 		User user = (User) session.getAttribute("loginUser");
 		usvc.delete(user.getId());
@@ -92,7 +92,7 @@ public class UserController {
 		return "redirect:/";
 	}
 
-	@PostMapping("/modify")
+//	@PostMapping("/modify")
 	public String modify(User user, RedirectAttributes re, HttpSession session) throws SQLException {
 		usvc.update(user);
 		session.setAttribute("loginUser", user);

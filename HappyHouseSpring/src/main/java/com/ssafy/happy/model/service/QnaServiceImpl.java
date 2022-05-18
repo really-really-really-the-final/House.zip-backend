@@ -4,10 +4,12 @@ import java.sql.SQLException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.ssafy.happy.dto.Qna;
 import com.ssafy.happy.model.repo.QnaRepo;
 
+@Service
 public class QnaServiceImpl implements QnaService {
 
 	@Autowired
@@ -29,13 +31,8 @@ public class QnaServiceImpl implements QnaService {
 	}
 
 	@Override
-	public int deleteAsk(int no) throws SQLException {
-		return repo.deleteAsk(no);
-	}
-	
-	@Override
-	public int deleteAns(int no) throws SQLException {
-		return repo.deleteAns(no);
+	public int delete(int no) throws SQLException {
+		return repo.delete(no);
 	}
 
 	@Override

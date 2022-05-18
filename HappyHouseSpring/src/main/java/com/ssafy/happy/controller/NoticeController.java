@@ -18,14 +18,14 @@ import com.ssafy.happy.dto.Notice;
 import com.ssafy.happy.dto.User;
 import com.ssafy.happy.model.service.NoticeService;
 
-@Controller
-@RequestMapping("/notice")
+//@Controller
+//@RequestMapping("/notice")
 public class NoticeController {
 	
-	@Autowired
+//	@Autowired
 	NoticeService nsvc;
 
-	@GetMapping("/")
+//	@GetMapping("/")
 	public String notice(Model m, HttpSession session) throws SQLException {
 		List<Notice> notices = nsvc.selectAll();
 		//알고리즘 적용 (정렬-merge sort)
@@ -36,7 +36,7 @@ public class NoticeController {
 		return "notice/notice";
 	}
 
-	@GetMapping("/detail")
+//	@GetMapping("/detail")
 	public String detail(int no, Model m, HttpSession session) throws SQLException {
 		Notice notice = nsvc.select(no);
 		m.addAttribute("notice", notice);
@@ -46,12 +46,12 @@ public class NoticeController {
 		return "notice/detail";
 	}
 
-	@GetMapping("/write")
+//	@GetMapping("/write")
 	public String write() throws SQLException {
 		return "notice/write";
 	}
 
-	@GetMapping("/delete")
+//	@GetMapping("/delete")
 	public String delete(String wrid, int no, HttpSession session, RedirectAttributes re) throws SQLException {
 		User user = (User) session.getAttribute("loginUser");
 		if (wrid.equals(user.getId())) {
@@ -63,7 +63,7 @@ public class NoticeController {
 		return "redirect:/notice/";
 	}
 
-	@PostMapping("/save")
+//	@PostMapping("/save")
 	public String save(Notice notice, HttpSession session, RedirectAttributes re) throws SQLException {
 		User user = (User) session.getAttribute("loginUser");
 		notice.setUserId(user.getId());
@@ -73,7 +73,7 @@ public class NoticeController {
 
 	}
 	
-	@GetMapping("/modify")
+//	@GetMapping("/modify")
 	public String modify(String wrid, int no, HttpSession session, Model m, RedirectAttributes re) throws SQLException {
 		User user = (User) session.getAttribute("loginUser");
 		if (wrid.equals(user.getId())) {
@@ -86,7 +86,7 @@ public class NoticeController {
 		}
 	}
 
-	@PostMapping("/modify")
+//	@PostMapping("/modify")
 	public String modify(Notice notice, int no, HttpSession session, Model m, RedirectAttributes re) throws SQLException {
 
 		User user = (User) session.getAttribute("loginUser");
