@@ -13,18 +13,18 @@ import lombok.ToString;
 @ToString
 public class Notice {
 	int no;
-	String userId;
+	String userid;
 	String title;
 	String content;
 	String regtime;
-	public Notice(String userId, String title, String content){
-		this.userId=userId;
+	public Notice(String userid, String title, String content){
+		this.userid=userid;
 		this.title=title;
 		this.content=content;
 	}
-	public Notice(int no, String userId, String title, String content){
+	public Notice(int no, String userid, String title, String content){
 		this.no=no;
-		this.userId=userId;
+		this.userid=userid;
 		this.title=title;
 		this.content=content;
 	}

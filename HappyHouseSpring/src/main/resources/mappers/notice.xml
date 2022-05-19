@@ -5,7 +5,7 @@
 
 	<insert id="insert" parameterType="Notice">
 		INSERT INTO notice (userid, title, content, regtime)
-		VALUES(#{userId}, #{title}, #{content}, now())
+		VALUES(#{userid}, #{title}, #{content}, now())
 	</insert>
 	
 	<delete id="delete" parameterType="int">
