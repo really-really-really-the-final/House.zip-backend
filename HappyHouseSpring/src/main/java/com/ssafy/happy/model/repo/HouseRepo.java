@@ -10,5 +10,5 @@ public interface HouseRepo {
 	House select(int no);
 	List<House> selectGugun(String gugun);
 	List<House> selectDong(String dong);
-	List<House> selectApt(String aptName);
+	List<House> selectApt(String aptCode);
 }

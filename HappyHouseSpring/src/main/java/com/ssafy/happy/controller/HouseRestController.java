@@ -47,22 +47,22 @@ public class HouseRestController {
 //		Map<String, Object> map = hsvc.pagingSearch(condition);
 //		return new ResponseEntity<Map<String, Object>>(map, HttpStatus.OK);
 		
-		logger.debug("all - 호출 "+param.get("gugun"));
+		logger.debug("all - 호출 ");
 		return new ResponseEntity<>(hsvc.selectGugun(param.get("gugun")), HttpStatus.OK);
 	}
 	
 	@ApiOperation(value = "해당 동에 있는 아파트 정보를 반환한다.", response = List.class)
 	@PostMapping("/dong")
-	public ResponseEntity<List<House>> dongList(@RequestBody String dong) throws SQLException {
+	public ResponseEntity<List<House>> dongList(@RequestBody Map<String,String> param) throws SQLException {
 		logger.debug("dongList - 호출");
-		return new ResponseEntity<>(hsvc.selectDong(dong), HttpStatus.OK);
+		return new ResponseEntity<>(hsvc.selectDong(param.get("dong")), HttpStatus.OK);
 	}
 	
-	@ApiOperation(value = "아파트 명에 해당 단어가 들어있는 아파트 정보를 반환한다.", response = List.class)
+	@ApiOperation(value = "아파트 코드와 일치하는 아파트 정보를 반환한다.", response = List.class)
 	@PostMapping("/apt")
-	public ResponseEntity<List<House>> aptList(@RequestBody String aptName) throws SQLException {
+	public ResponseEntity<List<House>> aptList(@RequestBody Map<String,String> param) throws SQLException {
 		logger.debug("aptList - 호출");
-		return new ResponseEntity<>(hsvc.selectApt(aptName), HttpStatus.OK);
+		return new ResponseEntity<>(hsvc.selectApt(param.get("aptCode")), HttpStatus.OK);
 	}
 	
 	@ApiOperation(value = "no 번호를 가지는 아파트 정보를 반환한다.", response = House.class)

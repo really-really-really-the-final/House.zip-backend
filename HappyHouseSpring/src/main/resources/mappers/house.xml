@@ -19,17 +19,29 @@
 	</select>
 	
 	<select id="selectDong" parameterType="string" resultType="House">
-		SELECT *
+		SELECT houseinfo.aptCode ,aptName, dongcode, dongName, buildYear, jibun, lat, lng, img, count(*) as total
 		FROM houseinfo left join housedeal on houseinfo.aptCode = housedeal.aptCode
 		WHERE dongcode=#{dong}
+		GROUP BY houseinfo.aptcode
 	</select>
 	
 	<select id="selectApt" parameterType="string" resultType="House">
 		SELECT *
 		FROM houseinfo left join housedeal on houseinfo.aptCode = housedeal.aptCode
-		WHERE aptName like concat('%', #{aptName}, '%')
+		WHERE houseinfo.aptCode = ${aptCode}
 	</select>
+	
+	
 
+
+
+
+<!-- <select id="selectApt" parameterType="string" resultType="House">
+		SELECT *
+		FROM houseinfo left join housedeal on houseinfo.aptCode = housedeal.aptCode
+		WHERE aptName like concat('%', #{aptName}, '%')
+	</select> -->
+	
 	<!-- <select id="selectGugun" parameterType="string" resultType="House">
 	 SELECT *
 		FROM houseinfo left join housedeal on houseinfo.aptCode = housedeal.aptCode

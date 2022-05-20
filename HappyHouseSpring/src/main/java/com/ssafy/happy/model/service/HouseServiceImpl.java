@@ -33,8 +33,8 @@ public class HouseServiceImpl implements HouseService {
 		return repo.selectDong(dong);
 	}
 	@Override
-	public List<House> selectApt(String aptName) {
-		return repo.selectApt(aptName);
+	public List<House> selectApt(String aptCode) {
+		return repo.selectApt(aptCode);
 	}
 
 	@Override
