@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssafy.happy.model.repo.AreaRepo">
+	
+	<select id="selectSido" parameterType="int" resultType="Sido">
+		SELECT *
+		FROM sido
+	</select>
+	
+	<select id="selectGugun" parameterType="string" resultType="Gugun">
+		SELECT *
+		FROM gugun
+		WHERE guguncode like concat(left(#{sido},2), '%')
+	
+	</select>
+	
+	<select id="selectDong" parameterType="string" resultType="House">
+		SELECT *
+		FROM dong
+		WHERE dongcode like concat(left(#{gugun},5), '%')
+	</select>
+</mapper>

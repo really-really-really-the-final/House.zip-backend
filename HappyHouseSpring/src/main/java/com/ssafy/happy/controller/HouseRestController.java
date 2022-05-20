@@ -9,17 +9,19 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ssafy.happy.dto.Dong;
+import com.ssafy.happy.dto.Gugun;
 import com.ssafy.happy.dto.House;
-import com.ssafy.happy.dto.SearchCondition;
+import com.ssafy.happy.dto.Sido;
+import com.ssafy.happy.model.service.AreaService;
 import com.ssafy.happy.model.service.HouseService;
 
 import io.swagger.annotations.ApiOperation;
@@ -35,13 +37,18 @@ public class HouseRestController {
 	
 	@Autowired
 	HouseService hsvc;
+	@Autowired
+	AreaService asvc;
 	
 	@ApiOperation(value = "전체 아파트 정보 중 일부 정보를 반환한다.", response = List.class)
 	@PostMapping("/all")
-	public ResponseEntity<?> all(@RequestBody SearchCondition condition, Model m) throws SQLException {
-		logger.debug("all - 호출");
-		Map<String, Object> map = hsvc.pagingSearch(condition);
-		return new ResponseEntity<Map<String, Object>>(map, HttpStatus.OK);
+	public ResponseEntity<?> all(@RequestBody Map<String,String> param) throws SQLException {
+//		logger.debug("all - 호출");
+//		Map<String, Object> map = hsvc.pagingSearch(condition);
+//		return new ResponseEntity<Map<String, Object>>(map, HttpStatus.OK);
+		
+		logger.debug("all - 호출 "+param.get("gugun"));
+		return new ResponseEntity<>(hsvc.selectGugun(param.get("gugun")), HttpStatus.OK);
 	}
 	
 	@ApiOperation(value = "해당 동에 있는 아파트 정보를 반환한다.", response = List.class)
@@ -60,9 +67,30 @@ public class HouseRestController {
 	
 	@ApiOperation(value = "no 번호를 가지는 아파트 정보를 반환한다.", response = House.class)
 	@GetMapping("/view")
-	public ResponseEntity<House> view(@RequestParam int no) throws SQLException {
+	public ResponseEntity<House> view(@PathVariable int no) throws SQLException {
 		logger.debug("view - 호출");
 		return new ResponseEntity<>(hsvc.select(no), HttpStatus.OK);
+	}
+	
+	@ApiOperation(value = "sido 리스트를 반환한다.", response = List.class)
+	@GetMapping("/list/sido")
+	public ResponseEntity<List<Sido>> searchSido() throws SQLException {
+		logger.debug("searchSido - 호출");
+		return new ResponseEntity<>(asvc.selectSido(), HttpStatus.OK);
+	}
+	
+	@ApiOperation(value = "gugun 리스트를 반환한다.", response = List.class)
+	@GetMapping("/list/gugun/{sido}")
+	public ResponseEntity<List<Gugun>> searchGugun(@PathVariable String sido) throws SQLException {
+		logger.debug("searchGugun - 호출");
+		return new ResponseEntity<>(asvc.selectGugun(sido), HttpStatus.OK);
+	}
+	
+	@ApiOperation(value = "dong 리스트를 반환한다.", response = List.class)
+	@GetMapping("/list/dong/{gugun}")
+	public ResponseEntity<List<Dong>> searchDong(@PathVariable String gugun) throws SQLException {
+		logger.debug("searchDong - 호출");
+		return new ResponseEntity<>(asvc.selectDong(gugun), HttpStatus.OK);
 	}
 
 }

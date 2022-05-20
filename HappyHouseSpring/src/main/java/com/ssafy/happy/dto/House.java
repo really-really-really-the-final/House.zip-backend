@@ -10,7 +10,7 @@ import lombok.*;
 public class House {
 	
 	private int no;
-	private int aptcode;
+	private int aptCode;
 	private String aptName;
 	private String dongCode;
 	private String dongName;
@@ -27,5 +27,6 @@ public class House {
 	private String floor;
 	private String type;
 	private String rentMoney;
+	private int total;
 	
 }

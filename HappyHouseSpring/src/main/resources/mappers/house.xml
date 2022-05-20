@@ -9,12 +9,14 @@
 		WHERE no=#{no}
 	</select>
 	
-	<!-- <select id="selectGugun" parameterType="string" resultType="House">
-		SELECT *
+	<select id="selectGugun" parameterType="string" resultType="House">
+	<!-- 	SELECT * -->
+		SELECT houseinfo.aptCode ,aptName, dongcode, dongName, buildYear, jibun, lat, lng, img, count(*) as total
 		FROM houseinfo left join housedeal on houseinfo.aptCode = housedeal.aptCode
 		WHERE dongcode like concat(left(#{guGun},5), '%')
+		GROUP BY houseinfo.aptcode
 	
-	</select> -->
+	</select>
 	
 	<select id="selectDong" parameterType="string" resultType="House">
 		SELECT *
@@ -28,7 +30,7 @@
 		WHERE aptName like concat('%', #{aptName}, '%')
 	</select>
 
-	<select id="selectGugun" parameterType="string" resultType="House">
+	<!-- <select id="selectGugun" parameterType="string" resultType="House">
 	 SELECT *
 		FROM houseinfo left join housedeal on houseinfo.aptCode = housedeal.aptCode
 	<if test="gugun!='none'">
@@ -44,5 +46,5 @@
 	<if test="gugun!='none'">
 	 	where dongcode like concat(left(#{gugun},5), '%')
 	 </if> 
-	</select>
+	</select> -->
 </mapper>

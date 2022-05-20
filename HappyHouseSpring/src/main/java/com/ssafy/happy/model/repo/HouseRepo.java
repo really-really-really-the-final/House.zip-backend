@@ -8,9 +8,7 @@ import com.ssafy.happy.dto.SearchCondition;
 public interface HouseRepo {
 
 	House select(int no);
-	List<House> selectGugun(SearchCondition condition);
-//	List<House> selectGugun(String gugun);
+	List<House> selectGugun(String gugun);
 	List<House> selectDong(String dong);
 	List<House> selectApt(String aptName);
-	int getTotalSearchCount(SearchCondition condition);
 }

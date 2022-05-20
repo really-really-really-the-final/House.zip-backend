@@ -37,15 +37,15 @@ public class HouseServiceImpl implements HouseService {
 		return repo.selectApt(aptName);
 	}
 
-//	@Override
-//	public List<House> selectGugun(String gugun) {
-//		return selectGugun(gugun);
-//	}
-	
 	@Override
-	public List<House> selectGugun(SearchCondition condition) {
-		return selectGugun(condition);
+	public List<House> selectGugun(String gugun) {
+		return repo.selectGugun(gugun);
 	}
+	
+//	@Override
+//	public List<House> selectGugun(SearchCondition condition) {
+//		return selectGugun(condition);
+//	}
 	
 //	@Override
 //	public List<House> selectDong(SearchCondition condition) {
@@ -56,16 +56,16 @@ public class HouseServiceImpl implements HouseService {
 //	public List<House> selectApt(SearchCondition condition) {
 //		return selectApt(condition);
 //	}
-
-	@Override
-	public Map<String, Object> pagingSearch(SearchCondition condition) {
-		int totalCount=repo.getTotalSearchCount(condition);
-		PageNavigation nav=new PageNavigation(condition.getCurrentPage(), totalCount);
-//		String gugun=condition.getGugun();
-		Map<String, Object> map=new HashMap<String, Object>();
-		map.put("houses", repo.selectGugun(condition));
-		map.put("navigation", nav);
-		return map;
-	}
+//
+//	@Override
+//	public Map<String, Object> pagingSearch(SearchCondition condition) {
+//		int totalCount=repo.getTotalSearchCount(condition);
+//		PageNavigation nav=new PageNavigation(condition.getCurrentPage(), totalCount);
+////		String gugun=condition.getGugun();
+//		Map<String, Object> map=new HashMap<String, Object>();
+//		map.put("houses", repo.selectGugun(condition));
+//		map.put("navigation", nav);
+//		return map;
+//	}
 
 }
