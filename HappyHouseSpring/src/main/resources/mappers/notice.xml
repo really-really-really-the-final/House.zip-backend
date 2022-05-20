@@ -28,5 +28,10 @@
 		SELECT *
 		FROM notice
 	</select>
-
+	
+	<update id="updateHit" parameterType="int">
+		update notice
+		set hit = hit + 1
+		where no = #{no}
+	</update>
 </mapper>

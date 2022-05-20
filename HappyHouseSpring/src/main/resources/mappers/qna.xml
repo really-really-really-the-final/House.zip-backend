@@ -34,6 +34,12 @@
 		SELECT *
 		FROM qna
 	</select>
+	
+	<update id="updateHit" parameterType="int">
+		update qna
+		set hit = hit + 1
+		where no = #{no}
+	</update>
 
 </mapper>
 

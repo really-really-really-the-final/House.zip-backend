@@ -44,5 +44,8 @@ public class NoticeServiceImpl implements NoticeService {
 	public int update(Notice notice) throws SQLException {
 		return repo.update(notice);
 	}
-
+	@Override
+	public void updateHit(int no) {
+		repo.updateHit(no);
+	}
 }

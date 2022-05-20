@@ -13,5 +13,5 @@ public interface QnaRepo {
 	int delete(int no) throws SQLException;
     int updateAsk(Qna notice) throws SQLException;
     int updateAns(Qna notice) throws SQLException;
-    
+    void updateHit(int no);
 }

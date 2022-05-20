@@ -45,4 +45,9 @@ public class QnaServiceImpl implements QnaService {
 		return repo.updateAns(notice);
 	}
 
+	@Override
+	public void updateHit(int no) {
+		repo.updateHit(no);
+	}
+
 }

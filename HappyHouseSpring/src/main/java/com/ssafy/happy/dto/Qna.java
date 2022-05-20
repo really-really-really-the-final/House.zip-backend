@@ -20,6 +20,7 @@ public class Qna {
 	String masterid;
 	String anscontent;
 	String anstime;
+	int hit;
 	
 	public Qna(String userid, String title, String content){
 		this.userid=userid;

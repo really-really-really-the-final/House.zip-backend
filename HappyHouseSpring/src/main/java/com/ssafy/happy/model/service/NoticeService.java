@@ -12,4 +12,5 @@ public interface NoticeService {
 	int insert(Notice notice) throws SQLException;
     int delete(int no) throws SQLException;
     int update(Notice notice) throws SQLException;
+    void updateHit(int no);
 }

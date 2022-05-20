@@ -49,6 +49,8 @@ public class QnaRestController {
 	@ApiOperation(value = "{no}에 해당하는 QnA 정보를 반환한다.", response = Qna.class)
 	@GetMapping("/{no}")
 	public ResponseEntity<Qna> select(@PathVariable int no) throws SQLException {
+	  	logger.debug("updateHit - 호출");
+	  	qsvc.updateHit(no);
 		logger.debug("select - 호출");
 		return new ResponseEntity<>(qsvc.select(no), HttpStatus.OK);
 	}

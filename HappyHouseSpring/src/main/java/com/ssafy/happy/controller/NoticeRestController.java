@@ -46,6 +46,8 @@ public class NoticeRestController {
 	@ApiOperation(value = "{no}에 해당하는 공지사항의 정보를 반환한다.", response = Notice.class)
 	@GetMapping("/{no}")
 	public ResponseEntity<Notice> select(@PathVariable int no) throws SQLException {
+		logger.debug("updateHit - 호출");
+		nsvc.updateHit(no);
 		logger.debug("select - 호출");
 		return new ResponseEntity<>(nsvc.select(no), HttpStatus.OK);
 	}

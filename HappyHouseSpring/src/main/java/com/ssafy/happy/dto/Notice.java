@@ -17,6 +17,7 @@ public class Notice {
 	String title;
 	String content;
 	String regtime;
+	int hit;
 	public Notice(String userid, String title, String content){
 		this.userid=userid;
 		this.title=title;
