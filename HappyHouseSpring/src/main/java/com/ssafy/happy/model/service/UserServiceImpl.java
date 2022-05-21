@@ -42,4 +42,9 @@ public class UserServiceImpl implements UserService {
 	public int update(User user) throws SQLException {
 		return repo.update(user);
 	}
+
+	@Override
+	public String selectCate(String id) throws SQLException {
+		return repo.selectCate(id);
+	}
 }

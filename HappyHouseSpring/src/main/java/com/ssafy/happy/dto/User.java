@@ -14,7 +14,8 @@ public class User{
 	String email;
 	String tel;
 	boolean isManager;
-	public User(String id, String password, String name, String email, String tel) {
+	String category;
+	public User(String id, String password, String name, String email, String tel, String category) {
 		super();
 		this.id = id;
 		this.password = password;
@@ -22,6 +23,7 @@ public class User{
 		this.email = email;
 		this.tel = tel;
 		this.isManager = false;
+		this.category=category;
 	}
 	
 }

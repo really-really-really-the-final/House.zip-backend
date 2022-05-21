@@ -78,11 +78,27 @@ public class UserRestController {
 			return exceptionHandling(e);
 		}
 	}
+	
+	@ApiOperation(value = "{id}에 해당하는 사용자 관심사를 반환한다.", response = String.class)
+	@GetMapping("/cate/{id}")
+	public ResponseEntity<?> selectCate(@PathVariable String id) {
+		try {
+//			String  = ;
+//			if (user != null) {
+				return new ResponseEntity<String>(usvc.selectCate(id), HttpStatus.OK);
+//			} else {
+//				return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+//			}
+		} catch (Exception e) {
+			return exceptionHandling(e);
+		}
+	}
 
 	@ApiOperation(value = "사용자 정보를 삽입한다.", response = Integer.class)
 	@PostMapping("/")
 	public ResponseEntity<?> insert( @RequestBody User user) {
 		try {
+			System.out.println(user.getCategory());
 			int result = usvc.insert(user);
 			return new ResponseEntity<Integer>(result, HttpStatus.CREATED);
 
