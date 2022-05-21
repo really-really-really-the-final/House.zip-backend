@@ -21,10 +21,10 @@ public class NoticeServiceImpl implements NoticeService {
 		return repo.select(no);
 	}
 
-	@Override
-	public List<Notice> selectAll(String sortCal,String sortVal) throws SQLException {
-		return repo.selectAll(sortCal, sortVal);
-	}
+//	@Override
+//	public List<Notice> selectAll(String sortCal,String sortVal) throws SQLException {
+//		return repo.selectAll(sortCal, sortVal);
+//	}
 
 	
 	@Override
@@ -47,5 +47,15 @@ public class NoticeServiceImpl implements NoticeService {
 	@Override
 	public void updateHit(int no) {
 		repo.updateHit(no);
+	}
+
+	@Override
+	public List<Notice> selectBoardLimitOffset(String sortCal,String sortVal,int limit, int offset) {
+		return repo.selectBoardLimitOffset(sortCal, sortVal, limit, offset);
+	}
+
+	@Override
+	public int selectBoardTotalCount() {
+		return repo.selectBoardTotalCount();
 	}
 }

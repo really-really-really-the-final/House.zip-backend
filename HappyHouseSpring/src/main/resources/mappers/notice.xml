@@ -24,10 +24,25 @@
 		FROM notice WHERE no = #{no}
 	</select>
 	
-	<select id="selectAll" resultType="Notice">
+<!-- 	<select id="selectAll" resultType="Notice">
 		SELECT *
 		FROM notice
 		order by ${sortCal} ${sortVal}
+	</select> -->
+	
+	<!-- for vue pagination (page-link) -->
+	<!-- 게시글 limit offset 조회 -->
+	<select id="selectBoardLimitOffset" parameterType="map"
+		resultType="Notice">
+		select *
+		from notice
+		order by ${sortCal} ${sortVal}
+		limit #{limit} offset #{offset}
+	</select>
+
+	<!-- 게시글 limit offset 조회 -->
+	<select id="selectBoardTotalCount" resultType="int">
+		select count(*) from notice
 	</select>
 	
 	<update id="updateHit" parameterType="int">
