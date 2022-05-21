@@ -21,8 +21,8 @@ public class QnaServiceImpl implements QnaService {
 	}
 
 	@Override
-	public List<Qna> selectAll() throws SQLException {
-		return repo.selectAll();
+	public List<Qna> selectAll(int limit, int offset) throws SQLException {
+		return repo.selectAll(limit, offset);
 	}
 
 	@Override
@@ -48,6 +48,20 @@ public class QnaServiceImpl implements QnaService {
 	@Override
 	public void updateHit(int no) {
 		repo.updateHit(no);
+	}
+
+	@Override
+	public List<Qna> selectAns(int limit, int offset) throws SQLException {
+		return repo.selectAns(limit, offset);
+	}
+
+	@Override
+	public int selectBoardTotalCount() {
+		return repo.selectBoardTotalCount();
+	}
+	@Override
+	public int selectBoardAnsTotalCount() {
+		return repo.selectBoardAnsTotalCount();
 	}
 
 }

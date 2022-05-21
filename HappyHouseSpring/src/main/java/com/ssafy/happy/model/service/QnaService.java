@@ -7,10 +7,13 @@ import com.ssafy.happy.dto.Qna;
 
 public interface QnaService {
 	Qna select(int no) throws SQLException;
-	List<Qna> selectAll() throws SQLException;
+	List<Qna> selectAns(int limit, int offset) throws SQLException;
+	List<Qna> selectAll(int limit, int offset) throws SQLException;
 	int insert(Qna notice) throws SQLException;
 	int delete(int no) throws SQLException;
     int updateAsk(Qna notice) throws SQLException;
     int updateAns(Qna notice) throws SQLException;
     void updateHit(int no);
+ 	int selectBoardTotalCount();
+    int selectBoardAnsTotalCount();
 }

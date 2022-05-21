@@ -33,6 +33,25 @@
 	<select id="selectAll" resultType="Qna">
 		SELECT *
 		FROM qna
+		limit #{limit} offset #{offset}
+	</select>
+	
+	<select id="selectAns" resultType="Qna">
+		SELECT *
+		FROM qna
+		where masterid IS NOT NULL
+		limit #{limit} offset #{offset}
+	</select>
+	
+		<!-- 게시글 limit offset 조회 -->
+	<select id="selectBoardTotalCount" resultType="int">
+		select count(*) from qna
+	</select>
+	
+			<!-- 게시글 limit offset 조회 -->
+	<select id="selectBoardAnsTotalCount" resultType="int">
+		select count(*) from qna
+		where masterid IS NOT NULL
 	</select>
 	
 	<update id="updateHit" parameterType="int">

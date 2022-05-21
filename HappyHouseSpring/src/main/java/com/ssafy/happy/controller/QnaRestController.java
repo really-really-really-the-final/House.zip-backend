@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.ssafy.happy.dto.Notice;
 import com.ssafy.happy.dto.Qna;
 import com.ssafy.happy.model.service.QnaService;
 
@@ -41,9 +42,31 @@ public class QnaRestController {
 
 	@ApiOperation(value = "모든 QnA의 정보를 반환한다.", response = List.class)
 	@GetMapping("/")
-	public ResponseEntity<List<Qna>> selectAll() throws SQLException {
+	public ResponseEntity<List<Qna>> selectAll(int limit, int offset) throws SQLException {
 		logger.debug("selectAll - 호출");
-		return new ResponseEntity<>(qsvc.selectAll(), HttpStatus.OK);
+		return new ResponseEntity<>(qsvc.selectAll(limit, offset), HttpStatus.OK);
+	}
+	
+	@ApiOperation(value = "답변이 달린 모든 QnA의 정보를 반환한다.", response = List.class)
+	@GetMapping("/ans")
+	public ResponseEntity<List<Qna>> selectAns(int limit, int offset) throws SQLException {
+		logger.debug("selectAns - 호출");
+		return new ResponseEntity<>(qsvc.selectAns(limit, offset), HttpStatus.OK);
+	}
+
+
+	@ApiOperation(value = "게시글의 전체 건수를 반환한다.  ", response = List.class)
+	@GetMapping(value = "/total")
+	public ResponseEntity<Integer> selectBoardTotalCount() throws Exception {
+		logger.debug("selectBoardTotalCount - 호출");
+		return new ResponseEntity<Integer>(qsvc.selectBoardTotalCount(), HttpStatus.OK);
+	}
+	
+	@ApiOperation(value = "답변이 달린 모든 QnA 건수를 반환한다.  ", response = List.class)
+	@GetMapping(value = "/ans/total")
+	public ResponseEntity<Integer> selectBoardTotalAnsCount() throws Exception {
+		logger.debug("selectBoardTotalAnsCount - 호출");
+		return new ResponseEntity<Integer>(qsvc.selectBoardAnsTotalCount(), HttpStatus.OK);
 	}
 
 	@ApiOperation(value = "{no}에 해당하는 QnA 정보를 반환한다.", response = Qna.class)
