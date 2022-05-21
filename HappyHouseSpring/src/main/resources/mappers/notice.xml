@@ -27,6 +27,7 @@
 	<select id="selectAll" resultType="Notice">
 		SELECT *
 		FROM notice
+		order by ${sortCal} ${sortVal}
 	</select>
 	
 	<update id="updateHit" parameterType="int">

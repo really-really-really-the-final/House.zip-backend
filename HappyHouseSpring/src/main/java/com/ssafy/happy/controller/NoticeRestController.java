@@ -38,9 +38,9 @@ public class NoticeRestController {
 
 	@ApiOperation(value = "모든 공지사항의 정보를 반환한다.", response = List.class)
 	@GetMapping("/")
-	public ResponseEntity<List<Notice>> selectAll() throws SQLException {
-		logger.debug("selectAll - 호출");
-		return new ResponseEntity<>(nsvc.selectAll(), HttpStatus.OK);
+	public ResponseEntity<List<Notice>> selectAll(@RequestParam String sortCal,@RequestParam String sortVal) throws SQLException {
+//		logger.debug("selectAll - 호출");
+		return new ResponseEntity<>(nsvc.selectAll(sortCal, sortVal), HttpStatus.OK);
 	}
 
 	@ApiOperation(value = "{no}에 해당하는 공지사항의 정보를 반환한다.", response = Notice.class)
