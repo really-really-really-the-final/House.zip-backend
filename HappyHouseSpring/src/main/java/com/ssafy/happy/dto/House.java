@@ -28,5 +28,31 @@ public class House {
 	private String type;
 	private String rentMoney;
 	private int total;
+	private int dist;
+	
+	public House(int no, int aptCode, String aptName, String dongCode, String dongName, int buildYear, String jibun,
+			String lat, String lng, String img, String dealAmount, String dealYear, String dealMonth, String dealDay,
+			String area, String floor, String type, String rentMoney, int total) {
+		super();
+		this.no = no;
+		this.aptCode = aptCode;
+		this.aptName = aptName;
+		this.dongCode = dongCode;
+		this.dongName = dongName;
+		this.buildYear = buildYear;
+		this.jibun = jibun;
+		this.lat = lat;
+		this.lng = lng;
+		this.img = img;
+		this.dealAmount = dealAmount;
+		this.dealYear = dealYear;
+		this.dealMonth = dealMonth;
+		this.dealDay = dealDay;
+		this.area = area;
+		this.floor = floor;
+		this.type = type;
+		this.rentMoney = rentMoney;
+		this.total = total;
+	}
 	
 }

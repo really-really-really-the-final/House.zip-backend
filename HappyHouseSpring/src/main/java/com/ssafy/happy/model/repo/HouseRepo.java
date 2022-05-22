@@ -11,4 +11,5 @@ public interface HouseRepo {
 	List<House> selectGugun(String gugun);
 	List<House> selectDong(String dong);
 	List<House> selectApt(String aptCode);
+	List<House> selectDist(String lat, String lng, String dist);
 }

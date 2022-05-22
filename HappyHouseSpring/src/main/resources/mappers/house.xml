@@ -2,61 +2,53 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ssafy.happy.model.repo.HouseRepo">
-	
+
 	<select id="select" parameterType="int" resultType="House">
 		SELECT *
-		FROM houseinfo left join housedeal on houseinfo.aptCode = housedeal.aptCode
+		FROM
+		houseinfo left join housedeal on houseinfo.aptCode = housedeal.aptCode
 		WHERE no=#{no}
 	</select>
-	
-	<select id="selectGugun" parameterType="string" resultType="House">
-	<!-- 	SELECT * -->
-		SELECT houseinfo.aptCode ,aptName, dongcode, dongName, buildYear, jibun, lat, lng, img, count(*) as total
-		FROM houseinfo left join housedeal on houseinfo.aptCode = housedeal.aptCode
-		WHERE dongcode like concat(left(#{guGun},5), '%')
+
+	<select id="selectGugun" parameterType="string"
+		resultType="House">
+		<!-- SELECT * -->
+		SELECT houseinfo.aptCode ,aptName, dongcode, dongName, buildYear,
+		jibun, lat, lng, img, count(*) as total
+		FROM houseinfo left join
+		housedeal on houseinfo.aptCode = housedeal.aptCode
+		WHERE dongcode like
+		concat(left(#{guGun},5), '%')
 		GROUP BY houseinfo.aptcode
-	
+
 	</select>
-	
-	<select id="selectDong" parameterType="string" resultType="House">
-		SELECT houseinfo.aptCode ,aptName, dongcode, dongName, buildYear, jibun, lat, lng, img, count(*) as total
-		FROM houseinfo left join housedeal on houseinfo.aptCode = housedeal.aptCode
-		WHERE dongcode=#{dong}
+
+	<select id="selectDong" parameterType="string"
+		resultType="House">
+		SELECT houseinfo.aptCode ,aptName, dongcode, dongName,
+		buildYear, jibun, lat, lng, img, count(*) as total
+		FROM houseinfo left
+		join housedeal on houseinfo.aptCode = housedeal.aptCode
+		WHERE
+		dongcode=#{dong}
 		GROUP BY houseinfo.aptcode
 	</select>
-	
+
+	<select id="selectDist" parameterType="string" resultType="House">
+		SELECT houseinfo.aptCode ,aptName, dongcode, dongName, buildYear, jibun, lat, lng, img, count(*) as total,
+		dongcode,(6371*acos(cos(radians(#{lat}))*cos(radians(lat))*cos(radians(lng)-radians(#{lng}))+sin(radians(#{lat}))*sin(radians(lat)))) as dist
+		from houseinfo left
+		join housedeal on houseinfo.aptCode = housedeal.aptCode
+		GROUP BY houseinfo.aptcode
+		having dist <![CDATA[<=]]> #{dist}
+		order by dist DESC;
+	</select>
+
 	<select id="selectApt" parameterType="string" resultType="House">
-		SELECT *
-		FROM houseinfo left join housedeal on houseinfo.aptCode = housedeal.aptCode
-		WHERE houseinfo.aptCode = ${aptCode}
+		SELECT
+		*
+		FROM houseinfo left join housedeal on houseinfo.aptCode =
+		housedeal.aptCode
+		WHERE houseinfo.aptCode = #{aptCode}
 	</select>
-	
-	
-
-
-
-
-<!-- <select id="selectApt" parameterType="string" resultType="House">
-		SELECT *
-		FROM houseinfo left join housedeal on houseinfo.aptCode = housedeal.aptCode
-		WHERE aptName like concat('%', #{aptName}, '%')
-	</select> -->
-	
-	<!-- <select id="selectGugun" parameterType="string" resultType="House">
-	 SELECT *
-		FROM houseinfo left join housedeal on houseinfo.aptCode = housedeal.aptCode
-	<if test="gugun!='none'">
-	 	where dongcode like concat(left(#{gugun},5), '%')
-	 </if> 
-	 <if test="limit">
-	 	limit #{offset}, #{countPerPage}
-	 </if>
-	</select>
-	<select id="getTotalSearchCount" resultType="int">
-	SELECT count(*) 
-	FROM houseinfo left join housedeal on houseinfo.aptCode = housedeal.aptCode
-	<if test="gugun!='none'">
-	 	where dongcode like concat(left(#{gugun},5), '%')
-	 </if> 
-	</select> -->
 </mapper>

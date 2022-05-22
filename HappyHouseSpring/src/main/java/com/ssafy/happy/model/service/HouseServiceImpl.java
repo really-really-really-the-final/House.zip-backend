@@ -41,6 +41,10 @@ public class HouseServiceImpl implements HouseService {
 	public List<House> selectGugun(String gugun) {
 		return repo.selectGugun(gugun);
 	}
+	@Override
+	public List<House> selectDist(String lat, String lng, String dist) {
+		return repo.selectDist(lat, lng, dist);
+	}
 	
 //	@Override
 //	public List<House> selectGugun(SearchCondition condition) {
