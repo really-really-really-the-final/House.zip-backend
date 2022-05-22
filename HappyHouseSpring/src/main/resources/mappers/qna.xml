@@ -33,6 +33,7 @@
 	<select id="selectAll" resultType="Qna">
 		SELECT *
 		FROM qna
+		order by asktime desc
 		limit #{limit} offset #{offset}
 	</select>
 	
@@ -40,6 +41,7 @@
 		SELECT *
 		FROM qna
 		where masterid IS NOT NULL
+		order by asktime desc
 		limit #{limit} offset #{offset}
 	</select>
 	
