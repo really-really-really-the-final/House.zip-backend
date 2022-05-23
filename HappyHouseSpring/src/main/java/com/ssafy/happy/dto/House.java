@@ -18,7 +18,6 @@ public class House {
 	private String jibun;
 	private String lat;
 	private String lng;
-	private String img;
 	private String dealAmount;
 	private String dealYear;
 	private String dealMonth;
@@ -33,7 +32,7 @@ public class House {
 	private int dist;
 	
 	public House(int no, int aptCode, String aptName, String dongCode, String dongName, int buildYear, String jibun,
-			String lat, String lng, String img, String dealAmount, String dealYear, String dealMonth, String dealDay,
+			String lat, String lng, String dealAmount, String dealYear, String dealMonth, String dealDay,
 			String area, String floor, String type, String rentMoney,String infoType, String dealType, int total) {
 		super();
 		this.no = no;
@@ -45,7 +44,6 @@ public class House {
 		this.jibun = jibun;
 		this.lat = lat;
 		this.lng = lng;
-		this.img = img;
 		this.dealAmount = dealAmount;
 		this.dealYear = dealYear;
 		this.dealMonth = dealMonth;
@@ -57,6 +55,21 @@ public class House {
 		this.infoType = infoType;
 		this.dealType = dealType;
 		this.total = total;
+	}
+
+	public House(int no, int aptCode, String dealAmount, String dealYear, String dealMonth, String dealDay, String area,
+			String floor, String rentMoney, String dealType) {
+		super();
+		this.no = no;
+		this.aptCode = aptCode;
+		this.dealAmount = dealAmount;
+		this.dealYear = dealYear;
+		this.dealMonth = dealMonth;
+		this.dealDay = dealDay;
+		this.area = area;
+		this.floor = floor;
+		this.rentMoney = rentMoney;
+		this.dealType = dealType;
 	}
 	
 }

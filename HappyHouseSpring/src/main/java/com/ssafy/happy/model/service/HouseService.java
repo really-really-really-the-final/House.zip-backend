@@ -13,4 +13,5 @@ public interface HouseService {
 	List<House> selectDong(String dong);
 	List<House> selectApt(String aptCode);
 	List<House> selectDist(String lat, String lng, String dist);
+	List<House> selectAptCode(String userid, String aptCode);
 }

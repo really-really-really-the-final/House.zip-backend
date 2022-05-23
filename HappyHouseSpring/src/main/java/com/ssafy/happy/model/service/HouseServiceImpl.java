@@ -1,5 +1,6 @@
 package com.ssafy.happy.model.service;
 
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -8,8 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ssafy.happy.dto.House;
+import com.ssafy.happy.dto.InterestDeal;
 import com.ssafy.happy.dto.SearchCondition;
 import com.ssafy.happy.model.repo.HouseRepo;
+import com.ssafy.happy.model.repo.InterestDealRepo;
 import com.ssafy.happy.util.PageNavigation;
 
 @Service
@@ -23,6 +26,11 @@ public class HouseServiceImpl implements HouseService {
 //		System.out.println("guGun "+ guGun);
 //		return repo.selectGugun(guGun);
 //	}
+	
+	@Override
+	public List<House> selectAptCode(String userid, String aptCode){
+		return repo.selectAptCode(userid, aptCode);
+	}
 	
 	@Override
 	public House select(int no){

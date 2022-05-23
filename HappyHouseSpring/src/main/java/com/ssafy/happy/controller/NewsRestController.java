@@ -66,12 +66,19 @@ public class NewsRestController {
 		String time = "";
 		String url = "";
 		
-//		System.out.println("[" + blogOption + "]");
+		System.out.println("[" + blogOption + "]");
 		int cnt=0;
 		for (Element option : blogOption) {
+//			System.out.println("[" + blogOption + "]");
 			title = option.select(".news_tit").text();
 //			content = option.select(".dsc_wrap").text();
 			time = option.select(".info").get(1).text();
+			for(Element info:option.select(".info")) {
+				if(info.text().substring(info.text().length()-1).equals("전")) {
+					time = info.text();
+					break;
+				}
+			}
 			url = option.select(".news_tit").attr("href");
 
 			news.add(new News(title, "", time, url));

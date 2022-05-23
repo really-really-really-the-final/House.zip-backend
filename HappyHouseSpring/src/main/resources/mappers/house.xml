@@ -14,7 +14,7 @@
 		resultType="House">
 		<!-- SELECT * -->
 		SELECT houseinfo.aptCode ,aptName, dongcode, dongName, buildYear,
-		jibun, lat, lng, img, count(*) as total,
+		jibun, lat, lng, count(*) as total,
 		infoType
 		FROM houseinfo left join
 		housedeal on houseinfo.aptCode = housedeal.aptCode
@@ -27,7 +27,7 @@
 	<select id="selectDong" parameterType="string"
 		resultType="House">
 		SELECT houseinfo.aptCode ,aptName, dongcode, dongName,
-		buildYear, jibun, lat, lng, img, count(*) as total,
+		buildYear, jibun, lat, lng, count(*) as total,
 		infoType
 		FROM houseinfo left
 		join housedeal on houseinfo.aptCode = housedeal.aptCode
@@ -37,7 +37,7 @@
 	</select>
 
 	<select id="selectDist" parameterType="string" resultType="House">
-		SELECT houseinfo.aptCode ,aptName, dongcode, dongName, buildYear, jibun, lat, lng, img, count(*) as total,
+		SELECT houseinfo.aptCode ,aptName, dongcode, dongName, buildYear, jibun, lat, lng, count(*) as total,
 		dongcode,(6371*acos(cos(radians(#{lat}))*cos(radians(lat))*cos(radians(lng)-radians(#{lng}))+sin(radians(#{lat}))*sin(radians(lat)))) as dist,
 		infoType
 		from houseinfo left
@@ -53,5 +53,10 @@
 		FROM houseinfo left join housedeal on houseinfo.aptCode =
 		housedeal.aptCode
 		WHERE houseinfo.aptCode = #{aptCode}
+	</select>
+	
+		<select id="selectAptCode" parameterType="string" resultType="House">
+		SELECT * FROM housedeal
+		where no in (select dealno from interestdeal where userid=#{userid}) and aptCode=#{aptCode} ;
 	</select>
 </mapper>

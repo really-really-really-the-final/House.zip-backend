@@ -17,7 +17,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ssafy.happy.dto.InterestDeal;
 import com.ssafy.happy.dto.User;
+import com.ssafy.happy.model.service.InterestDealService;
 import com.ssafy.happy.model.service.UserService;
 
 import io.swagger.annotations.ApiOperation;
@@ -32,6 +34,9 @@ public class UserRestController {
 	
 	@Autowired
 	UserService usvc;
+	
+	@Autowired
+	InterestDealService isvc;
 
 //	@ApiOperation(value = "등록된 모든 사용자 정보를 반환한다.", response = User.class)
 //	@GetMapping("/")
@@ -134,5 +139,45 @@ public class UserRestController {
 	private ResponseEntity<String> exceptionHandling(Exception e) {
 		e.printStackTrace();
 		return new ResponseEntity<String>("Sorry: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+	}
+	
+	@ApiOperation(value = "{id}에 해당하는 사용자 관심매물 리스트를 반환한다.", response = List.class)
+	@GetMapping("/interest/{id}")
+	public ResponseEntity<?> selectInterestDeal(@PathVariable String id) {
+		try {
+			return new ResponseEntity<List<InterestDeal>>(isvc.select(id), HttpStatus.OK);
+		} catch (Exception e) {
+			return exceptionHandling(e);
+		}
+	}
+	
+	@ApiOperation(value = "{id}에 해당하는 사용자 관심매물을 삭제한다.", response = Integer.class)
+	@DeleteMapping("/interest/")
+	public ResponseEntity<?> deleteInterestDeal(@RequestBody InterestDeal interestDeal) {
+		try {
+			return new ResponseEntity<Integer>(isvc.delete(interestDeal), HttpStatus.OK);
+		} catch (Exception e) {
+			return exceptionHandling(e);
+		}
+	}
+	
+	@ApiOperation(value = "{id}에 해당하는 사용자 관심매물을 추가한다.", response = Integer.class)
+	@PostMapping("/interest/")
+	public ResponseEntity<?> postInterestDeal(@RequestBody InterestDeal interestDeal) {
+		try {
+			return new ResponseEntity<Integer>(isvc.insert(interestDeal), HttpStatus.OK);
+		} catch (Exception e) {
+			return exceptionHandling(e);
+		}
+	}
+	
+	@ApiOperation(value = "전체 사용자 관심매물 리스트를 반환한다.", response = List.class)
+	@GetMapping("/interest/")
+	public ResponseEntity<?> selectAllInterestDeal() {
+		try {
+			return new ResponseEntity<List<InterestDeal>>(isvc.selectAll(), HttpStatus.OK);
+		} catch (Exception e) {
+			return exceptionHandling(e);
+		}
 	}
 }
