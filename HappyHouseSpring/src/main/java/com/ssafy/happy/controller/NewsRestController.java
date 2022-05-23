@@ -70,13 +70,13 @@ public class NewsRestController {
 		int cnt=0;
 		for (Element option : blogOption) {
 			title = option.select(".news_tit").text();
-			content = option.select(".dsc_wrap").text();
+//			content = option.select(".dsc_wrap").text();
 			time = option.select(".info").get(1).text();
 			url = option.select(".news_tit").attr("href");
 
-			news.add(new News(title, content.substring(0, 50)+"...", time, url));
+			news.add(new News(title, "", time, url));
 
-			if(++cnt==4)break;
+			if(++cnt==5)break;
 //			News n = new News(title, content,time , url);
 //			System.out.println(n);
 //			break;
