@@ -56,13 +56,15 @@ public class HouseRestController {
 	@PostMapping("/dong")
 	public ResponseEntity<List<House>> dongList(@RequestBody Map<String, String> param) throws SQLException {
 		logger.debug("dongList - 호출");
+
 		return new ResponseEntity<>(hsvc.selectDong(param.get("dong")), HttpStatus.OK);
 	}
 
 	@ApiOperation(value = "해당 반경에 있는 아파트 정보를 반환한다.", response = List.class)
 	@PostMapping("/dist")
 	public ResponseEntity<List<House>> selectDist(@RequestBody Map<String, String> param) throws SQLException {
-		logger.debug("dongList - 호출");
+		logger.debug("selectDist - 호출");
+//		System.out.println(hsvc.selectDist(param.get("lat"), param.get("lng"), param.get("dist")));
 		return new ResponseEntity<>(hsvc.selectDist(param.get("lat"), param.get("lng"), param.get("dist")),
 				HttpStatus.OK);
 	}

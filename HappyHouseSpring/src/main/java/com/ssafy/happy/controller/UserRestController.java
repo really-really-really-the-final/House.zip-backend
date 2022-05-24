@@ -26,7 +26,7 @@ import io.swagger.annotations.ApiOperation;
 
 @CrossOrigin(origins = { "*" }, maxAge = 6000)
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/")
 public class UserRestController {
 	private static final Logger logger = LoggerFactory.getLogger(UserRestController.class);
 	private static final String SUCCESS = "success";
@@ -53,24 +53,24 @@ public class UserRestController {
 //		}
 //	}
 	
-	@ApiOperation(value = "로그인을 한다. 그리고 DB조회 성공여부에 따라 'success' 또는 'fail' 문자열을 반환한다.", response = User.class)
-	@PostMapping("/login")
-	public ResponseEntity<?> login(@RequestBody User user) {
-		try {
-			User selected = usvc.select(user.getId());
-			if (selected != null && user.getPassword().equals(selected.getPassword())) {
-//				session.setAttribute("loginUser", selected);
-				return new ResponseEntity<User>(selected, HttpStatus.OK);
-			} else {
-				return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
-			}
-		} catch (Exception e) {
-			return exceptionHandling(e);
-		}
-	}
+//	@ApiOperation(value = "로그인을 한다. 그리고 DB조회 성공여부에 따라 'success' 또는 'fail' 문자열을 반환한다.", response = User.class)
+//	@PostMapping("/login")
+//	public ResponseEntity<?> login(@RequestBody User user) {
+//		try {
+//			User selected = usvc.select(user.getId());
+//			if (selected != null && user.getPassword().equals(selected.getPassword())) {
+////				session.setAttribute("loginUser", selected);
+//				return new ResponseEntity<User>(selected, HttpStatus.OK);
+//			} else {
+//				return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+//			}
+//		} catch (Exception e) {
+//			return exceptionHandling(e);
+//		}
+//	}
 
 	@ApiOperation(value = "{id}에 해당하는 사용자 정보를 반환한다.", response = User.class)
-	@GetMapping("/{id}")
+	@GetMapping("user/{id}")
 	public ResponseEntity<?> select(@PathVariable String id) {
 		try {
 			User user = usvc.select(id);
@@ -85,7 +85,7 @@ public class UserRestController {
 	}
 	
 	@ApiOperation(value = "{id}에 해당하는 사용자 관심사를 반환한다.", response = String.class)
-	@GetMapping("/cate/{id}")
+	@GetMapping("user/cate/{id}")
 	public ResponseEntity<?> selectCate(@PathVariable String id) {
 		try {
 //			String  = ;
@@ -99,8 +99,24 @@ public class UserRestController {
 		}
 	}
 
+	
+	@ApiOperation(value = "{id}에 해당하는 사용자 관심지역을 반환한다.", response = String.class)
+	@GetMapping("user/inter/{id}")
+	public ResponseEntity<?> selectInte(@PathVariable String id) {
+		try {
+//			String  = ;
+//			if (user != null) {
+				return new ResponseEntity<User>(usvc.selectInte(id), HttpStatus.OK);
+//			} else {
+//				return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+//			}
+		} catch (Exception e) {
+			return exceptionHandling(e);
+		}
+	}
+
 	@ApiOperation(value = "사용자 정보를 삽입한다.", response = Integer.class)
-	@PostMapping("/")
+	@PostMapping("userregist")
 	public ResponseEntity<?> insert( @RequestBody User user) {
 		try {
 			System.out.println(user.getCategory());
@@ -113,7 +129,7 @@ public class UserRestController {
 	}
 
 	@ApiOperation(value = "{id} 에 해당하는 사용자 정보를 수정한다.", response = Integer.class)
-	@PutMapping("/{id}")
+	@PutMapping("user/{id}")
 	public ResponseEntity<?> update(@PathVariable String id, @RequestBody User user) {
 		try {
 			int result = usvc.update(user);
@@ -125,7 +141,7 @@ public class UserRestController {
 	}
 	
 	@ApiOperation(value = "{id} 에 해당하는 사용자 정보를 삭제한다.", response = Integer.class)
-	@DeleteMapping("/{id}")
+	@DeleteMapping("user/{id}")
 	public ResponseEntity<?> delete(@PathVariable String id) {
 		try {
 			int result = usvc.delete(id);
@@ -142,7 +158,7 @@ public class UserRestController {
 	}
 	
 	@ApiOperation(value = "{id}에 해당하는 사용자 관심매물 리스트를 반환한다.", response = List.class)
-	@GetMapping("/interest/{id}")
+	@GetMapping("user/interest/{id}")
 	public ResponseEntity<?> selectInterestDeal(@PathVariable String id) {
 		try {
 			return new ResponseEntity<List<InterestDeal>>(isvc.select(id), HttpStatus.OK);
@@ -152,7 +168,7 @@ public class UserRestController {
 	}
 	
 	@ApiOperation(value = "{id}에 해당하는 사용자 관심매물을 삭제한다.", response = Integer.class)
-	@DeleteMapping("/interest/")
+	@DeleteMapping("user/interest/")
 	public ResponseEntity<?> deleteInterestDeal(@RequestBody InterestDeal interestDeal) {
 		try {
 			return new ResponseEntity<Integer>(isvc.delete(interestDeal), HttpStatus.OK);
@@ -162,7 +178,7 @@ public class UserRestController {
 	}
 	
 	@ApiOperation(value = "{id}에 해당하는 사용자 관심매물을 추가한다.", response = Integer.class)
-	@PostMapping("/interest/")
+	@PostMapping("user/interest/")
 	public ResponseEntity<?> postInterestDeal(@RequestBody InterestDeal interestDeal) {
 		try {
 			return new ResponseEntity<Integer>(isvc.insert(interestDeal), HttpStatus.OK);
@@ -172,7 +188,7 @@ public class UserRestController {
 	}
 	
 	@ApiOperation(value = "전체 사용자 관심매물 리스트를 반환한다.", response = List.class)
-	@GetMapping("/interest/")
+	@GetMapping("user/interest/")
 	public ResponseEntity<?> selectAllInterestDeal() {
 		try {
 			return new ResponseEntity<List<InterestDeal>>(isvc.selectAll(), HttpStatus.OK);

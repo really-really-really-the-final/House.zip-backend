@@ -47,4 +47,19 @@ public class UserServiceImpl implements UserService {
 	public String selectCate(String id) throws SQLException {
 		return repo.selectCate(id);
 	}
+	
+	@Override
+	public User login(String id, String password) throws SQLException {
+		User selected = repo.select(id);
+		if (id.equals(selected.getId()) && password.equals(selected.getPassword())) {
+			return selected;
+		} else {
+			throw new RuntimeException("로그인 실패");
+		}
+	}
+
+	@Override
+	public User selectInte(String id) throws SQLException {
+		return repo.selectInte(id);
+	}
 }

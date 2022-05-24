@@ -66,7 +66,7 @@ public class NewsRestController {
 		String time = "";
 		String url = "";
 		
-		System.out.println("[" + blogOption + "]");
+//		System.out.println("[" + blogOption + "]");
 		int cnt=0;
 		for (Element option : blogOption) {
 //			System.out.println("[" + blogOption + "]");

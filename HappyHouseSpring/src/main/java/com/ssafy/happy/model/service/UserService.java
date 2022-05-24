@@ -13,4 +13,6 @@ public interface UserService {
 	int delete(String id) throws SQLException;
 	int update(User user) throws SQLException;
 	String selectCate(String id) throws SQLException;
+	User login(String id, String password) throws SQLException;
+	User selectInte(String id) throws SQLException;
 }

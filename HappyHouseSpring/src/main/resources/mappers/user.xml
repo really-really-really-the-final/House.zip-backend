@@ -4,8 +4,8 @@
 <mapper namespace="com.ssafy.happy.model.repo.UserRepo">
 
 	<insert id="insert" parameterType="User">
-		INSERT INTO userinfo (id, password, name, email,tel,category)
-		VALUES(#{id}, #{password}, #{name}, #{email}, #{tel}, #{category})
+		INSERT INTO userinfo (id, password, name, email,tel,category, interestSidoCode, interestGugunCode)
+		VALUES(#{id}, #{password}, #{name}, #{email}, #{tel}, #{category}, #{interestSidoCode}, #{interestGugunCode})
 	</insert>
 	
 	<delete id="delete" parameterType="string">
@@ -15,7 +15,7 @@
 	
 	<update id="update" parameterType="User">
 		UPDATE userinfo
-		SET password = #{password} , name = #{name} , email = #{email}, tel = #{tel}, category = #{category}
+		SET password = #{password} , name = #{name} , email = #{email}, tel = #{tel}, category = #{category}, interestSidoCode =#{interestSidoCode}, interestGugunCode=#{interestGugunCode}
 		WHERE id = #{id}
 	</update>
 	
@@ -31,6 +31,11 @@
 	
 	<select id="selectCate" parameterType="string" resultType="string">
 		SELECT category
+		FROM userinfo WHERE id = #{id}
+	</select>
+	
+	<select id="selectInte" parameterType="string" resultType="User">
+		SELECT interestSidoCode, interestGugunCode
 		FROM userinfo WHERE id = #{id}
 	</select>
 
