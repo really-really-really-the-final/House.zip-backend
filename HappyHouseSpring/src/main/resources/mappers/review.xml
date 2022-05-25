@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssafy.happy.model.repo.ReviewRepo">
+
+	<insert id="insert" parameterType="Review">
+		INSERT INTO review (userid, aptCode, time, commute,park,noise, facilities, content)
+		VALUES(#{userid}, #{aptCode}, #{time}, #{commute}, #{park}, #{noise}, #{facilities}, #{content})
+	</insert>
+	
+	<delete id="delete" parameterType="string">
+		DELETE FROM review
+		WHERE userid = #{userid} and aptCode = #{aptCode}
+	</delete>
+	
+	<update id="update" parameterType="Review">
+		UPDATE review
+		SET time = #{time} , commute = #{commute} , park = #{park}, noise = #{noise}, facilities = #{facilities}, content =#{content}
+		WHERE userid = #{userid} and aptCode = #{aptCode}
+	</update>
+	
+	<select id="select" parameterType="int" resultType="Review">
+		SELECT *
+		FROM review WHERE aptCode = #{aptCode}
+	</select>
+	
+	<select id="selectAll" parameterType="string" resultType="Review">
+		SELECT *
+		FROM review
+	</select>
+	
+
+</mapper>

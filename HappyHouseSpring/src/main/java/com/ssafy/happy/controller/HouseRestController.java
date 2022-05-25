@@ -11,9 +11,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,9 +24,11 @@ import com.ssafy.happy.dto.Dong;
 import com.ssafy.happy.dto.Gugun;
 import com.ssafy.happy.dto.House;
 import com.ssafy.happy.dto.InterestDeal;
+import com.ssafy.happy.dto.Review;
 import com.ssafy.happy.dto.Sido;
 import com.ssafy.happy.model.service.AreaService;
 import com.ssafy.happy.model.service.HouseService;
+import com.ssafy.happy.model.service.ReviewService;
 
 import io.swagger.annotations.ApiOperation;
 
@@ -41,6 +45,8 @@ public class HouseRestController {
 	HouseService hsvc;
 	@Autowired
 	AreaService asvc;
+	@Autowired
+	ReviewService rsvc;
 
 	@ApiOperation(value = "전체 아파트 정보 중 일부 정보를 반환한다.", response = List.class)
 	@PostMapping("/all")
@@ -118,4 +124,44 @@ public class HouseRestController {
 		
 		return new ResponseEntity<>(hsvc.selectInte(param.get("aptCode")), HttpStatus.OK);
 	}
+	
+	@ApiOperation(value = "전체 건물의 리뷰 리스트를 반환한다.", response = List.class)
+	@GetMapping("/review/")
+	public ResponseEntity<List<Review>> searchReviewAll() throws SQLException {
+		logger.debug("searchReviewAll - 호출");
+		return new ResponseEntity<>(rsvc.selectAll(), HttpStatus.OK);
+	}
+	
+	@ApiOperation(value = "{aptCode} 건물의 리뷰 리스트를 반환한다.", response = List.class)
+	@GetMapping("/review/{aptCode}")
+	public ResponseEntity<List<Review>> searchReview(@PathVariable int aptCode) throws SQLException {
+		logger.debug("searchReview - 호출");
+		return new ResponseEntity<>(rsvc.select(aptCode), HttpStatus.OK);
+	}
+	
+	@ApiOperation(value = "{aptCode} 건물의 리뷰 리스트를 삽입한다.", response = List.class)
+	@PostMapping("/review/{aptCode}")
+	public ResponseEntity<Integer> insertReview(@PathVariable int aptCode, @RequestBody Review review) throws SQLException {
+		logger.debug("insertReview - 호출");
+		int result = rsvc.insert(review);
+		return new ResponseEntity<>(result, HttpStatus.OK);
+	}
+	
+	@ApiOperation(value = "{aptCode} 건물의 리뷰 리스트를 삭제한다.", response = List.class)
+	@DeleteMapping("/review/{aptCode}")
+	public ResponseEntity<Integer> deleteReview(@PathVariable int aptCode, @RequestBody String userid) throws SQLException {
+		logger.debug("deleteReview - 호출");
+		int result = rsvc.delete(userid,aptCode);
+		return new ResponseEntity<>(result, HttpStatus.OK);
+	}
+	
+	@ApiOperation(value = "{aptCode} 건물의 리뷰 리스트를 수정한다.", response = List.class)
+	@PutMapping("/review/{aptCode}")
+	public ResponseEntity<Integer> updateReview(@PathVariable int aptCode, @RequestBody String userid) throws SQLException {
+		logger.debug("updateReview - 호출");
+		int result = rsvc.update(userid,aptCode);
+		return new ResponseEntity<>(result, HttpStatus.OK);
+	}
+	
+	
 }

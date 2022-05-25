@@ -14,6 +14,7 @@ public class User{
 	String email;
 	String tel;
 	boolean isManager;
+	boolean isReview;
 	String category;
 	String interestSidoCode;
 	String interestGugunCode;
@@ -33,6 +34,11 @@ public class User{
 	public User(String interestSidoCode, String interestGugunCode) {
 		this.interestSidoCode=interestSidoCode;
         this.interestGugunCode=interestGugunCode;
+	}
+	
+	public User(String id, Boolean isReview) {
+		this.id=id;
+        this.isReview=isReview;
 	}
 	
 }
