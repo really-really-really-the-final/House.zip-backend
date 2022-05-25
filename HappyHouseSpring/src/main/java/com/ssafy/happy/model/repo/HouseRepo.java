@@ -15,4 +15,5 @@ public interface HouseRepo {
 	List<House> selectApt(String aptCode);
 	List<House> selectDist(String lat, String lng, String dist);
 	List<House> selectAptCode(String userid, String aptCode);
+	List<House> selectInte(List<String> aptCode);
 }

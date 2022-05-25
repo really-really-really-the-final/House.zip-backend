@@ -54,6 +54,14 @@ public class QnaServiceImpl implements QnaService {
 	public List<Qna> selectAns(int limit, int offset) throws SQLException {
 		return repo.selectAns(limit, offset);
 	}
+	@Override
+	public List<Qna> selectMyAns(String userid,int limit, int offset) throws SQLException {
+		return repo.selectMyAns(userid,limit, offset);
+	}
+	@Override
+	public List<Qna> selectMyAll(String userid,int limit, int offset) throws SQLException {
+		return repo.selectMyAll(userid,limit, offset);
+	}
 
 	@Override
 	public int selectBoardTotalCount() {

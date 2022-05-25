@@ -45,6 +45,24 @@
 		limit #{limit} offset #{offset}
 	</select>
 	
+	
+	<select id="selectMyAll" resultType="Qna">
+		SELECT *
+		FROM qna
+		where userid=#{userid}
+		order by asktime desc
+		limit #{limit} offset #{offset}
+	</select>
+	
+	<select id="selectMyAns" resultType="Qna">
+		SELECT *
+		FROM qna
+		where masterid IS NOT NULL and userid=#{userid}
+		order by asktime desc
+		limit #{limit} offset #{offset}
+	</select>
+	
+	
 		<!-- 게시글 limit offset 조회 -->
 	<select id="selectBoardTotalCount" resultType="int">
 		select count(*) from qna

@@ -1,6 +1,7 @@
 package com.ssafy.happy.controller;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -106,8 +107,15 @@ public class HouseRestController {
 
 	@ApiOperation(value = "사용자 관심매물 리스트를 반환한다.", response = List.class)
 	@PostMapping("/interest")
-	public ResponseEntity<List<House>> selectInterestDeal(@RequestBody Map<String, String> param) throws SQLException {
+	public ResponseEntity<List<House>> selectInterestDeal(@RequestBody Map<String, List<String>> param) throws SQLException {
 		logger.debug("selectInterestDeal - 호출");
-		return new ResponseEntity<>(hsvc.selectAptCode(param.get("userid"), param.get("aptCode")), HttpStatus.OK);
+////		System.out.println(param);
+////		System.out.println(param.get("aptCode"));
+////		param.get("aptCode");
+//		List<String> arr = param.get("aptCode");
+//		System.out.println(arr.get(0));
+//		Map<String, Object> 
+		
+		return new ResponseEntity<>(hsvc.selectInte(param.get("aptCode")), HttpStatus.OK);
 	}
 }

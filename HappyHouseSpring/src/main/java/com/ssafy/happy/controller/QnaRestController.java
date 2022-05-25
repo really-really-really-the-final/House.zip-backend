@@ -49,9 +49,24 @@ public class QnaRestController {
 	
 	@ApiOperation(value = "답변이 달린 모든 QnA의 정보를 반환한다.", response = List.class)
 	@GetMapping("/ans")
-	public ResponseEntity<List<Qna>> selectAns(int limit, int offset) throws SQLException {
-		logger.debug("selectAns - 호출");
+	public ResponseEntity<List<Qna>> selectAns( int limit, int offset) throws SQLException {
+		logger.debug("selectMyAns - 호출");
 		return new ResponseEntity<>(qsvc.selectAns(limit, offset), HttpStatus.OK);
+	}
+
+	
+	@ApiOperation(value = "모든 QnA의 정보를 반환한다.", response = List.class)
+	@GetMapping("/my")
+	public ResponseEntity<List<Qna>> selectMyAll(String userid, int limit, int offset) throws SQLException {
+		logger.debug("selectMyAll - 호출");
+		return new ResponseEntity<>(qsvc.selectMyAll(userid,limit, offset), HttpStatus.OK);
+	}
+	
+	@ApiOperation(value = "답변이 달린 모든 QnA의 정보를 반환한다.", response = List.class)
+	@GetMapping("/my/ans")
+	public ResponseEntity<List<Qna>> selectMyAns(String userid,int limit, int offset) throws SQLException {
+		logger.debug("selectAns - 호출");
+		return new ResponseEntity<>(qsvc.selectMyAns(userid,limit, offset), HttpStatus.OK);
 	}
 
 

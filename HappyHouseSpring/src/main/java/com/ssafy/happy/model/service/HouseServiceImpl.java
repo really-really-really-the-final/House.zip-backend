@@ -53,6 +53,11 @@ public class HouseServiceImpl implements HouseService {
 	public List<House> selectDist(String lat, String lng, String dist) {
 		return repo.selectDist(lat, lng, dist);
 	}
+
+	@Override
+	public List<House> selectInte(List<String> aptCode) {
+		return repo.selectInte(aptCode);
+	}
 	
 //	@Override
 //	public List<House> selectGugun(SearchCondition condition) {

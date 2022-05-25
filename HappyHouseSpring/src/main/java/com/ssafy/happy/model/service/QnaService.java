@@ -16,4 +16,6 @@ public interface QnaService {
     void updateHit(int no);
  	int selectBoardTotalCount();
     int selectBoardAnsTotalCount();
+	List<Qna> selectMyAns(String userid, int limit, int offset) throws SQLException;
+	List<Qna> selectMyAll(String userid, int limit, int offset) throws SQLException;
 }
