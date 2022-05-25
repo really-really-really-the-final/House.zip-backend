@@ -20,7 +20,7 @@ public class JwtService {
 	// 토큰 암호 키
 	private String SECRET_KEY = "secret";
 	// 토큰 만료시간 5분 설정
-	private Long expire= 1000 * 60 * 5L;
+	private Long expire= 1000 * 60 * 30L;
 	
 	public String createToken(User user) {
 //		byte[] secretKeyBytes = DatatypeConverter.parseBase64Binary(SECRET_KEY);

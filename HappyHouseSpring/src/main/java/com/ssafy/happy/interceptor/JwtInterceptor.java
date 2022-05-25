@@ -22,9 +22,9 @@ public class JwtInterceptor implements HandlerInterceptor {
 			throws Exception {
 		System.out.println(">>> interceptor.preHandle 호출");
 		String token = AuthorizationExtractor.extract(request, "Bearer");
-		System.out.println(request);
-		System.out.println("~~~~~~~~~~~~~~");
-		System.out.println(token);
+//		System.out.println(request);
+//		System.out.println("~~~~~~~~~~~~~~");
+//		System.out.println(token);
 		 if (token.isEmpty()) {
 	            throw new IllegalArgumentException("토큰비어있음");
 	        }

@@ -36,7 +36,7 @@ public class User{
         this.interestGugunCode=interestGugunCode;
 	}
 	
-	public User(String id, Boolean isReview) {
+	public User(String id, boolean isReview) {
 		this.id=id;
         this.isReview=isReview;
 	}

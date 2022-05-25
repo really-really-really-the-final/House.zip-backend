@@ -62,4 +62,9 @@ public class UserServiceImpl implements UserService {
 	public User selectInte(String id) throws SQLException {
 		return repo.selectInte(id);
 	}
+
+	@Override
+	public int updateIsReview(String id) throws SQLException {
+		return repo.updateIsReview(id);
+	}
 }

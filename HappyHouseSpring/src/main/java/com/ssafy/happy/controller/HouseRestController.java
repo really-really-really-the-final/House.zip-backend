@@ -29,6 +29,7 @@ import com.ssafy.happy.dto.Sido;
 import com.ssafy.happy.model.service.AreaService;
 import com.ssafy.happy.model.service.HouseService;
 import com.ssafy.happy.model.service.ReviewService;
+import com.ssafy.happy.model.service.UserService;
 
 import io.swagger.annotations.ApiOperation;
 
@@ -47,6 +48,8 @@ public class HouseRestController {
 	AreaService asvc;
 	@Autowired
 	ReviewService rsvc;
+	@Autowired
+	UserService usvc;
 
 	@ApiOperation(value = "전체 아파트 정보 중 일부 정보를 반환한다.", response = List.class)
 	@PostMapping("/all")
@@ -144,6 +147,7 @@ public class HouseRestController {
 	public ResponseEntity<Integer> insertReview(@PathVariable int aptCode, @RequestBody Review review) throws SQLException {
 		logger.debug("insertReview - 호출");
 		int result = rsvc.insert(review);
+		usvc.updateIsReview(review.getUserid());
 		return new ResponseEntity<>(result, HttpStatus.OK);
 	}
 	

@@ -38,5 +38,11 @@
 		SELECT interestSidoCode, interestGugunCode
 		FROM userinfo WHERE id = #{id}
 	</select>
+	
+	<update id="updateIsReview" parameterType="string">
+		UPDATE userinfo
+		SET isReview = true
+		WHERE id = #{id}
+	</update>
 
 </mapper>
