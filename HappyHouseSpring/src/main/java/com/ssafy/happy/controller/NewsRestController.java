@@ -71,6 +71,7 @@ public class NewsRestController {
 		for (Element option : blogOption) {
 //			System.out.println("[" + blogOption + "]");
 			title = option.select(".news_tit").text();
+			if(35<title.length())continue;
 //			content = option.select(".dsc_wrap").text();
 			time = option.select(".info").get(1).text();
 			for(Element info:option.select(".info")) {

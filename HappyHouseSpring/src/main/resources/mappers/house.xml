@@ -86,4 +86,57 @@
 
 		GROUP BY houseinfo.aptcode
 	</select>
+
+	<select id="getAvgAll" resultType="Avgamount">
+		select
+		avg(dealAmount) as dealAmount, avg(rentMoney) as rentMoney
+		from housedeal
+		GROUP BY dealType
+	</select>
+
+	<select id="getAvgSido" parameterType="string"
+		resultType="Avgamount">
+		select avg(dealAmount) as dealAmount, avg(rentMoney)as rentMoney
+		from housedeal
+		where aptCode in (SELECT houseinfo.aptCode
+		FROM houseinfo
+		left
+		join housedeal
+		on houseinfo.aptCode = housedeal.aptCode
+		WHERE dongcode like
+		concat(left(#{dongCode},5), '%')
+		GROUP BY houseinfo.aptcode)
+		GROUP BY dealType
+	</select>
+
+	<select id="getAvgGugun" parameterType="string"
+		resultType="Avgamount">
+		select avg(dealAmount) as dealAmount, avg(rentMoney)as rentMoney
+		from housedeal
+		where aptCode in (SELECT houseinfo.aptCode
+		FROM houseinfo
+		left
+		join housedeal
+		on houseinfo.aptCode = housedeal.aptCode
+		WHERE dongcode like
+		concat(left(#{dongCode},2), '%')
+		GROUP BY houseinfo.aptcode)
+		GROUP BY dealType
+	</select>
+
+	<select id="getAvgDong" parameterType="string"
+		resultType="Avgamount">
+		select avg(dealAmount) as dealAmount, avg(rentMoney)as rentMoney
+		from housedeal
+		where aptCode in (SELECT houseinfo.aptCode
+		FROM houseinfo
+		left
+		join housedeal
+		on houseinfo.aptCode = housedeal.aptCode
+		WHERE
+		dongcode=#{dongCode}
+		GROUP BY houseinfo.aptcode)
+		GROUP BY dealType
+	</select>
+
 </mapper>

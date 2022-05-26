@@ -1,7 +1,7 @@
 package com.ssafy.happy.controller;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -20,10 +20,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ssafy.happy.dto.Avgamount;
 import com.ssafy.happy.dto.Dong;
 import com.ssafy.happy.dto.Gugun;
 import com.ssafy.happy.dto.House;
-import com.ssafy.happy.dto.InterestDeal;
 import com.ssafy.happy.dto.Review;
 import com.ssafy.happy.dto.Sido;
 import com.ssafy.happy.model.service.AreaService;
@@ -164,6 +164,23 @@ public class HouseRestController {
 	public ResponseEntity<Integer> updateReview(@PathVariable int aptCode, @RequestBody String userid) throws SQLException {
 		logger.debug("updateReview - 호출");
 		int result = rsvc.update(userid,aptCode);
+		return new ResponseEntity<>(result, HttpStatus.OK);
+	}
+	
+	
+	@ApiOperation(value = "{dongCode} 평균 가격을 확인한다.", response = List.class)
+	@GetMapping("/avg/{dongCode}")
+	public ResponseEntity<Map<String, List<Avgamount>>> getAvg(@PathVariable String dongCode) throws SQLException {
+		Map<String, List<Avgamount>> result=new HashMap<>();
+//		System.out.println(hsvc.getAvgAll());
+		result.put("all", hsvc.getAvgAll());
+		result.put("sido", hsvc.getAvgSido(dongCode));
+		result.put("gugun", hsvc.getAvgGugun(dongCode));
+		result.put("dong", hsvc.getAvgDong(dongCode));
+//		System.out.println(hsvc.getAvgAll());
+//		System.out.println(hsvc.getAvgSido(dongCode));
+//		System.out.println(hsvc.getAvgGugun(dongCode));
+//		System.out.println(hsvc.getAvgDong(dongCode));
 		return new ResponseEntity<>(result, HttpStatus.OK);
 	}
 	

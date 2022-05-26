@@ -8,6 +8,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.ssafy.happy.dto.Avgamount;
 import com.ssafy.happy.dto.House;
 import com.ssafy.happy.dto.InterestDeal;
 import com.ssafy.happy.dto.SearchCondition;
@@ -57,6 +58,26 @@ public class HouseServiceImpl implements HouseService {
 	@Override
 	public List<House> selectInte(List<String> aptCode) {
 		return repo.selectInte(aptCode);
+	}
+
+	@Override
+	public List<Avgamount> getAvgAll() {
+		return repo.getAvgAll();
+	}
+
+	@Override
+	public List<Avgamount> getAvgSido(String dongCode) {
+		return repo.getAvgSido(dongCode);
+	}
+
+	@Override
+	public List<Avgamount> getAvgGugun(String dongCode) {
+		return repo.getAvgGugun(dongCode);
+	}
+
+	@Override
+	public List<Avgamount> getAvgDong(String dongCode) {
+		return repo.getAvgDong(dongCode);
 	}
 	
 //	@Override
