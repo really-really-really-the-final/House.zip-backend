@@ -38,36 +38,6 @@ public class UserRestController {
 	@Autowired
 	InterestDealService isvc;
 
-//	@ApiOperation(value = "등록된 모든 사용자 정보를 반환한다.", response = User.class)
-//	@GetMapping("/")
-//	public ResponseEntity<?> selectAll() {
-//		try {
-//			List<User> users = usvc.selectAll();
-//			if (users != null && users.size() > 0) {
-//				return new ResponseEntity<List<User>>(users, HttpStatus.OK);
-//			} else {
-//				return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
-//			}
-//		} catch (Exception e) {
-//			return exceptionHandling(e);
-//		}
-//	}
-	
-//	@ApiOperation(value = "로그인을 한다. 그리고 DB조회 성공여부에 따라 'success' 또는 'fail' 문자열을 반환한다.", response = User.class)
-//	@PostMapping("/login")
-//	public ResponseEntity<?> login(@RequestBody User user) {
-//		try {
-//			User selected = usvc.select(user.getId());
-//			if (selected != null && user.getPassword().equals(selected.getPassword())) {
-////				session.setAttribute("loginUser", selected);
-//				return new ResponseEntity<User>(selected, HttpStatus.OK);
-//			} else {
-//				return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
-//			}
-//		} catch (Exception e) {
-//			return exceptionHandling(e);
-//		}
-//	}
 
 	@ApiOperation(value = "{id}에 해당하는 사용자 정보를 반환한다.", response = User.class)
 	@GetMapping("user/{id}")
@@ -196,4 +166,36 @@ public class UserRestController {
 			return exceptionHandling(e);
 		}
 	}
+	
+	@ApiOperation(value = "비밀번호를 변경한다.", response = List.class)
+	@PutMapping("findpwd/")
+	public ResponseEntity<?> updatePwd(@RequestBody User user) {
+		try {
+			User checked = usvc.select(user.getId());
+			if(checked.getName().equals(user.getName())&&checked.getEmail().equals(user.getEmail())){
+				
+				checked.setPassword("1234@");
+				return new ResponseEntity<Integer>(usvc.update(checked), HttpStatus.OK);
+			}
+			return new ResponseEntity<Integer>(0, HttpStatus.OK);
+		} catch (Exception e) {
+			return exceptionHandling(e);
+		}
+	}
+	
+	@ApiOperation(value = "ID 중복확인", response = List.class)
+	@GetMapping("checked/{id}")
+	public ResponseEntity<?> checkesId(@PathVariable String id) {
+		try {
+			User checked = usvc.select(id);
+			if(checked==null) {
+				return new ResponseEntity<Integer>(1, HttpStatus.OK);
+			}else {
+				return new ResponseEntity<Integer>(0, HttpStatus.OK);
+			}
+		} catch (Exception e) {
+			return exceptionHandling(e);
+		}
+	}
+	
 }

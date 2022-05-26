@@ -31,6 +31,12 @@ public class User{
         this.interestGugunCode=interestGugunCode;
 	}
 	
+	public User(String id, String name, String email) {
+		this.id = id;
+		this.name = name;
+		this.email = email;
+	}
+	
 	public User(String interestSidoCode, String interestGugunCode) {
 		this.interestSidoCode=interestSidoCode;
         this.interestGugunCode=interestGugunCode;
