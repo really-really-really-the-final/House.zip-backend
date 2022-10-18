@@ -18,7 +18,6 @@ public interface QnaRepo {
     int updateAns(Qna notice) throws SQLException;
     void updateHit(int no);
     
- // for pagination (page-link)
     int selectBoardTotalCount();
     int selectBoardAnsTotalCount();
 }

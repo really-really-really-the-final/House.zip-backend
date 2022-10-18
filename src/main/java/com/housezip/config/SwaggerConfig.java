@@ -2,7 +2,6 @@ package com.housezip.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.stereotype.Controller;
 
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
@@ -13,27 +12,22 @@ import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
-//swagger 사용을 위해 선언한다.
 @EnableSwagger2
 @Configuration
 public class SwaggerConfig {
-	/**
-	 * Swagger를 위한 Docket 빈을 추가한다.
-	 * 
-	 * @return
-	 */
+
 	@Bean
 	public Docket api() {
-		final ApiInfo apiInfo = new ApiInfoBuilder().title("SSAFY HappyHouse API")
-				.description("<h3>HappyHouse 관통프로젝트에서 사용되는 RestApi에 대한 문서를 제공한다.</h3>")
-				.contact(new Contact("SSAFY", "https://edu.ssafy.com", "ssafy@ssafy.com")).license("MIT License")
+		final ApiInfo apiInfo = new ApiInfoBuilder().title("House.zip API")
+				.description("<h3>House.zip 프로젝트에서 사용되는 RestApi에 대한 문서를 제공한다.</h3>")
+				.license("MIT License")
 				.version("7.0").build();
 
-		return new Docket(DocumentationType.SWAGGER_2) // Swagger 2.0 기반의 문서 작성
-				.apiInfo(apiInfo) // 문서에 대한 정보를 설정한다.
-				.select() // ApiSelectorBuilder를 반환하며 상세한 설정 처리
-				.apis(RequestHandlerSelectors.basePackage("com.housezip.controller"))// 대상으로하는 api 설정
-				.paths(PathSelectors.ant("/**/user/**").or(PathSelectors.ant("/**/house/**")).or(PathSelectors.ant("/**/notice/**")).or(PathSelectors.ant("/**/qna/**"))) // controller에서 swagger를 지정할 대상 path 설정
-				.build(); // Docket 객체 생성
+		return new Docket(DocumentationType.SWAGGER_2)
+				.apiInfo(apiInfo)
+				.select()
+				.apis(RequestHandlerSelectors.basePackage("com.housezip.controller"))
+				.paths(PathSelectors.ant("/**/user/**").or(PathSelectors.ant("/**/house/**")).or(PathSelectors.ant("/**/notice/**")).or(PathSelectors.ant("/**/qna/**")))
+				.build();
 	}
 }

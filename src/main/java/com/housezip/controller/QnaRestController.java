@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.housezip.dto.Notice;
 import com.housezip.dto.Qna;
 import com.housezip.model.service.QnaService;
 

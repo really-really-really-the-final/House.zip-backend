@@ -67,6 +67,7 @@ public class QnaServiceImpl implements QnaService {
 	public int selectBoardTotalCount() {
 		return repo.selectBoardTotalCount();
 	}
+
 	@Override
 	public int selectBoardAnsTotalCount() {
 		return repo.selectBoardAnsTotalCount();

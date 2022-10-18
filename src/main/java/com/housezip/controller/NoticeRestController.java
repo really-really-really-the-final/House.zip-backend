@@ -39,24 +39,14 @@ public class NoticeRestController {
 	@ApiOperation(value = "limit offset 에 해당하는 게시글의 정보를 반환한다.  ", response = List.class)
 	@GetMapping(value = "/")
 	public ResponseEntity<List<Notice>> selectBoardLimitOffset(@RequestParam String sortCal,@RequestParam String sortVal,int limit, int offset) throws Exception {
-//		logger.debug("selectBoardLimitOffset - 호출");
-		System.out.println("limit : " + limit + " / offset : " + offset);
 		return new ResponseEntity<List<Notice>>(nsvc.selectBoardLimitOffset(sortCal, sortVal,limit, offset), HttpStatus.OK);
 	}
 
 	@ApiOperation(value = "게시글의 전체 건수를 반환한다.  ", response = List.class)
 	@GetMapping(value = "/total")
 	public ResponseEntity<Integer> selectBoardTotalCount() throws Exception {
-//		logger.debug("selectBoardTotalCount - 호출");
 		return new ResponseEntity<Integer>(nsvc.selectBoardTotalCount(), HttpStatus.OK);
 	}
-
-//	@ApiOperation(value = "모든 공지사항의 정보를 반환한다.", response = List.class)
-//	@GetMapping("/")
-//	public ResponseEntity<List<Notice>> selectAll(@RequestParam String sortCal,@RequestParam String sortVal) throws SQLException {
-////		logger.debug("selectAll - 호출");
-//		return new ResponseEntity<>(nsvc.selectAll(sortCal, sortVal), HttpStatus.OK);
-//	}
 
 	@ApiOperation(value = "{no}에 해당하는 공지사항의 정보를 반환한다.", response = Notice.class)
 	@GetMapping("/{no}")

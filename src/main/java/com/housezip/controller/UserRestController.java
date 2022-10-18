@@ -58,12 +58,7 @@ public class UserRestController {
 	@GetMapping("user/cate/{id}")
 	public ResponseEntity<?> selectCate(@PathVariable String id) {
 		try {
-//			String  = ;
-//			if (user != null) {
-				return new ResponseEntity<String>(usvc.selectCate(id), HttpStatus.OK);
-//			} else {
-//				return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
-//			}
+			return new ResponseEntity<String>(usvc.selectCate(id), HttpStatus.OK);
 		} catch (Exception e) {
 			return exceptionHandling(e);
 		}
@@ -74,12 +69,7 @@ public class UserRestController {
 	@GetMapping("user/inter/{id}")
 	public ResponseEntity<?> selectInte(@PathVariable String id) {
 		try {
-//			String  = ;
-//			if (user != null) {
-				return new ResponseEntity<User>(usvc.selectInte(id), HttpStatus.OK);
-//			} else {
-//				return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
-//			}
+			return new ResponseEntity<User>(usvc.selectInte(id), HttpStatus.OK);
 		} catch (Exception e) {
 			return exceptionHandling(e);
 		}

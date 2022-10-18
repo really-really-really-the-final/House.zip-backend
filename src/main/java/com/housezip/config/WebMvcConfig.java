@@ -23,7 +23,7 @@ public class WebMvcConfig implements WebMvcConfigurer{
                 		"/swagger-ui/**",
                 		"/**/house/list/**",
                 		"v2/api-docs"
-                		); //로그인 쪽은 예외처리를 한다.
+                		);
     }
 
 }

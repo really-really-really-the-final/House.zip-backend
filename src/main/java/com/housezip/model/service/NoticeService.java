@@ -9,7 +9,6 @@ public interface NoticeService {
 
 	Notice select(int no) throws SQLException;
 
-//	List<Notice> selectAll(String sortCal,String sortVal) throws SQLException;
 	int insert(Notice notice) throws SQLException;
 
 	int delete(int no) throws SQLException;

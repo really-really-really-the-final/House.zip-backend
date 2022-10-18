@@ -22,7 +22,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.housezip.dto.News;
-import com.housezip.dto.Notice;
 
 import io.swagger.annotations.ApiOperation;
 
@@ -54,21 +53,16 @@ public class NewsRestController {
 				+ toDate + "&nso=so%3Ar%2Cp%3Afrom" + s_from + "to" + e_to + "%2Ca%3A&start=" + Integer.toString(page);
 		Document rawData = Jsoup.connect(address).timeout(5000).get();
 
-//		System.out.println(address);
 		Elements blogOption = rawData.select(".news_area");
 		
 		String title = "";
-		String content = "";
 		String time = "";
 		String url = "";
 		
-//		System.out.println("[" + blogOption + "]");
 		int cnt=0;
 		for (Element option : blogOption) {
-//			System.out.println("[" + blogOption + "]");
 			title = option.select(".news_tit").text();
 			if(35<title.length())continue;
-//			content = option.select(".dsc_wrap").text();
 			time = option.select(".info").get(1).text();
 			for(Element info:option.select(".info")) {
 				if(info.text().substring(info.text().length()-1).equals("전")) {
@@ -81,9 +75,7 @@ public class NewsRestController {
 			news.add(new News(title, "", time, url));
 
 			if(++cnt==5)break;
-//			News n = new News(title, content,time , url);
-//			System.out.println(n);
-//			break;
+
 		}
 	
 		return new ResponseEntity<>(news, HttpStatus.OK);

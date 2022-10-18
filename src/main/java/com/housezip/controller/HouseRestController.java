@@ -54,10 +54,6 @@ public class HouseRestController {
 	@ApiOperation(value = "전체 아파트 정보 중 일부 정보를 반환한다.", response = List.class)
 	@PostMapping("/all")
 	public ResponseEntity<?> all(@RequestBody Map<String, String> param) throws SQLException {
-//		logger.debug("all - 호출");
-//		Map<String, Object> map = hsvc.pagingSearch(condition);
-//		return new ResponseEntity<Map<String, Object>>(map, HttpStatus.OK);
-
 		logger.debug("all - 호출 ");
 		return new ResponseEntity<>(hsvc.selectGugun(param.get("gugun")), HttpStatus.OK);
 	}
@@ -74,7 +70,6 @@ public class HouseRestController {
 	@PostMapping("/dist")
 	public ResponseEntity<List<House>> selectDist(@RequestBody Map<String, String> param) throws SQLException {
 		logger.debug("selectDist - 호출");
-//		System.out.println(hsvc.selectDist(param.get("lat"), param.get("lng"), param.get("dist")));
 		return new ResponseEntity<>(hsvc.selectDist(param.get("lat"), param.get("lng"), param.get("dist")),
 				HttpStatus.OK);
 	}
@@ -118,13 +113,6 @@ public class HouseRestController {
 	@PostMapping("/interest")
 	public ResponseEntity<List<House>> selectInterestDeal(@RequestBody Map<String, List<String>> param) throws SQLException {
 		logger.debug("selectInterestDeal - 호출");
-////		System.out.println(param);
-////		System.out.println(param.get("aptCode"));
-////		param.get("aptCode");
-//		List<String> arr = param.get("aptCode");
-//		System.out.println(arr.get(0));
-//		Map<String, Object> 
-		
 		return new ResponseEntity<>(hsvc.selectInte(param.get("aptCode")), HttpStatus.OK);
 	}
 	
@@ -172,15 +160,10 @@ public class HouseRestController {
 	@GetMapping("/avg/{dongCode}")
 	public ResponseEntity<Map<String, List<Avgamount>>> getAvg(@PathVariable String dongCode) throws SQLException {
 		Map<String, List<Avgamount>> result=new HashMap<>();
-//		System.out.println(hsvc.getAvgAll());
 		result.put("all", hsvc.getAvgAll());
 		result.put("sido", hsvc.getAvgSido(dongCode));
 		result.put("gugun", hsvc.getAvgGugun(dongCode));
 		result.put("dong", hsvc.getAvgDong(dongCode));
-//		System.out.println(hsvc.getAvgAll());
-//		System.out.println(hsvc.getAvgSido(dongCode));
-//		System.out.println(hsvc.getAvgGugun(dongCode));
-//		System.out.println(hsvc.getAvgDong(dongCode));
 		return new ResponseEntity<>(result, HttpStatus.OK);
 	}
 	
